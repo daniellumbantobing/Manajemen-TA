@@ -53,7 +53,7 @@
 												
 												<td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_depan}}</a></td>
 												<td>{{$siswa->nim}}</td>
-												<td>{{$siswa->nama_prodi}}</td>
+												<td>{{$siswa->prodi->nama_prodi}}</td>
 												<td>{{$siswa->jenis_kelamin}}</td>
 												<td>{{$siswa->agama}}</td>
 												<td>{{$siswa->alamat}}</td>
