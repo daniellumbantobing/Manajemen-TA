@@ -19,7 +19,20 @@
 									</ul>
 									</div>
 								</li>
-								<li><a href="/matkul"><i class="lnr lnr-book"></i><span>Mata Kuliah</span></a></li>
+								
+								<li>
+									<a href="#subPage" data-toggle="collapse" class="collapsed"><i class="lnr lnr-book"></i> 
+										<span>Matakuliah</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+										<div id="subPage" class="collapse ">
+										<ul class="nav">
+											<li><a href="/matakuliah" class="">Semua Matkuliah</a></li>
+											<li><a href="/SI" class="">S1 Sistem Informasi</a></li>
+											<li><a href="/TI" class="">S1 Teknik Informatika</a></li>
+											<li><a href="/TE" class="">S1 Teknik Elektro</a></li>
+											
+									</ul>
+									</div>
+								</li>
 						
 								<li><a href="/posts" class=""><i class="lnr lnr-pencil"></i> <span>Post</span></a></li>
 						@endif

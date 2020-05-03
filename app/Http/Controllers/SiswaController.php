@@ -95,31 +95,31 @@ class SiswaController extends Controller
     }
 
 
-    public function profile(Siswa $siswa){
+  public function profile(Siswa $siswa){
         //$siswa = Siswa::find($id);
-        $matapelajaran = \App\Mapel::all();
+        $matapelajaran = \App\Matakuliah::all();
         
         //menyiapkan data untuk chart
         $categories= [];
         $data = [];
 
         foreach ($matapelajaran as $mp) {
-            if($siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()){
+            if($siswa->matakuliah()->wherePivot('matakuliah_id',$mp->id)->first()){
             $categories[] = $mp->nama;
-            $data[] = $siswa->mapel()->wherePivot('mapel_id',$mp->id)->first()->pivot->nilai; 
+            $data[] = $siswa->matakuliah()->wherePivot('matakuliah_id',$mp->id)->first()->pivot->nilai; 
             
             }
         }
-        
-        return view('siswa.profile',['siswa' => $siswa, 'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
+         return view('siswa.profile',['siswa' => $siswa, 'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
     }
+        
      public function addnilai(Request $request,Siswa $siswa){
        
         //$siswa = Siswa::find($idsiswa);
-        if ($siswa->mapel()->where('mapel_id',$request->mapel)->exists()) {
+        if ($siswa->matakuliah()->where('matakuliah_id',$request->mapel)->exists()) {
             return redirect('siswa/'.$siswa->id.'/profile')->with('error','Data matapelajaran sudah ada ');    
         }
-        $siswa->mapel()->attach($request->mapel,['nilai' => $request->nilai]);
+        $siswa->matakuliah()->attach($request->mapel,['nilai' => $request->nilai]);
 
         return redirect('siswa/'.$siswa->id.'/profile')->with('sukses','Data berhasil dimasukkan'); 
     }
@@ -127,7 +127,7 @@ class SiswaController extends Controller
  public function deletenilai($idsiswa, $idmapel)
     {
         $siswa = Siswa::find($idsiswa);
-        $siswa->mapel()->detach($idmapel);
+        $siswa->matakuliah()->detach($idmapel);
         return redirect()->back()->with('sukses','Data nilai berhasil dihapus');
     }
 

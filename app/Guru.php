@@ -15,5 +15,10 @@ class Guru extends Model
     	return $this->hasMany(Mapel::class);
     } 
 
+   public function matakuliah()
+    {
+    	return $this->hasMany(Matakuliah::class);
+    } 
+
     
 }

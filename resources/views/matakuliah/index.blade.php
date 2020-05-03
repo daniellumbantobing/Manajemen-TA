@@ -1,7 +1,6 @@
 @extends('layouts.master')
-@section('title','S1 Teknik Elektro')
+@section('title','Matakuliah')
 @section('content')
-
 
 
 <div class="main">
@@ -34,36 +33,31 @@
 									<table class="table table-hover" id="table-datatables">
 										<thead>
 											<tr>
-												<th>Nama</th>
-												<th>NIM</th>
+												<th>Kode</th>
+												<th>Matakuliah</th>
+												<th>SKS</th>
 												<th>PRODI</th>
-												<th>Jenis Kelamin</th>
-												<th>Agama</th>
-												<th>Alamat</th>
-												<th>Rata - rata nilai</th>
+												<th>Semester</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
-											@foreach($MR as $siswa)
+											@foreach($matkul as $mk)
 											<tr>
-												
-												<td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_depan}}</a></td>
-												<td>{{$siswa->nim}}</td>
-												<td>{{$siswa->prodi->nama_prodi}}</td>
-												<td>{{$siswa->jenis_kelamin}}</td>
-												<td>{{$siswa->agama}}</td>
-												<td>{{$siswa->alamat}}</td>
-												<td>{{$siswa->rataratanilai()}}</td>
+												<td>{{$mk->kode_matkul}}</td>
+												<td>{{$mk->matakuliah}}</td>
+												<td>{{$mk->sks}}</td>
+												<td>{{$mk->prodi->nama_prodi}}</td>
+												<td>{{$mk->semester->semester}}</td>
 												<td>
-													<a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
-													<a href="#" class="btn btn-danger btn-sm delete" siswa-id="{{$siswa->id}}">Delete</a>
+													<a href="" class="btn btn-warning btn-sm">Edit</a>
+													<a href="#" class="btn btn-danger btn-sm delete" mt-id="{{$mk->id}}">Delete</a>
 												</td>
 											</tr>
 											@endforeach
 										</tbody>
 									</table>
-								{{ $MR->links() }}
+							
 								</div>
 						
 							</div>
@@ -76,20 +70,15 @@
 
 
 
-
-
-
-
-
 @stop
 
  @section('footer')
 <script>
 	$('.delete').click(function(){
-		  var siswa_id = $(this).attr('siswa-id');
+		  var mt_id = $(this).attr('mt-id');
 		  swal({
 		  title: "Yakin  ?",
-		  text: "Mau menghapus data siswa dengan id " +siswa_id + "??",
+		  text: "Mau menghapus data siswa dengan id " +mt_id + "??",
 		  icon: "warning",
 		  buttons: true,
 		  dangerMode: true,
@@ -97,31 +86,32 @@
 		.then((willDelete) => {
 		  
 		  if (willDelete) {
-		    window.location = "/siswa/"+siswa_id+"/delete";
+		    window.location = "/matakuliah/"+mt_id+"/deletemt";
 		  } 
 		}); 
 	});
 </script>
 <script type="text/javascript"> 
  $('#table-datatables').DataTable( {
+
   dom: 'Bfrtip',
   buttons: [
     {
       extend:  'copy', 
       exportOptions: {
-        columns: [ 0, 1, 3, 4, 5 ]
+        columns: [ 0, 1, 3, 4 ]
       }
     },
     {
       extend:  'excel', 
       exportOptions: {
-        columns: [  0, 1, 3, 4, 5 ]
+        columns: [  0, 1, 3, 4 ]
       }
     },
     {
       extend:  'pdf', 
       exportOptions: {
-        columns: [  0, 1, 3, 4, 5 ]
+        columns: [  0, 1, 3, 4 ]
       }
     }
 
@@ -129,4 +119,3 @@
 })
 </script>
  @stop 
- 

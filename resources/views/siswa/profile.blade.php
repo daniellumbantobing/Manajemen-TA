@@ -32,10 +32,10 @@
 									<div class="profile-stat">
 										<div class="row">
 											<div class="col-md-4 stat-item">
-												{{$siswa->mapel->count()}} <span>Matapelajaran</span> 
+												<span>Matapelajaran</span> 
 											</div>
 											<div class="col-md-4 stat-item">
-												{{$siswa->rataratanilai()}} <span>Rata-rata nilai</span>
+												 <span>Rata-rata nilai</span>
 											</div>
 											<div class="col-md-4 stat-item">
 												2174 <span>Points</span>
@@ -64,32 +64,30 @@
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Nilai</button>
 						<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Mata Pelajaran</h3>
+									<h3 class="panel-title">Mata Kulliah</h3>
 								</div>
 								<div class="panel-body">
 									<table class="table table-striped">
 										<thead>
 											<tr>
 												<th>Kode</th>
-												<th>Nama</th>
+												<th>Matakuliah</th>
 												<th>Semester</th>
 												<th>Nilai</th>
-												<th>Guru</th>
+												
 												<th>Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
-											@foreach($siswa->mapel as $mapel )
+											@foreach($siswa->matakuliah as $mapel )
 											<tr>
-												<td>{{$mapel->kode}}</td>
-												<td>{{$mapel->nama}}</td>
-												<td>{{$mapel->semester}}</td>
+												<td>{{$mapel->kode_matkul}}</td>
+												<td>{{$mapel->matakuliah}}</td>
+												<td>{{$mapel->semester->semester}}</td>
 												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai}}</a></td>
-												<td><a href="/guru/{{$mapel->guru_id}}/profile">{{$mapel->guru->nama}}</a></td>
 												<td>
-													<a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data in ?')" >Delete</a>
+												<a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data in ?')" >Delete</a>
 												</td>
-											</tr>
 											@endforeach
 										</tbody>
 									</table>
@@ -106,7 +104,7 @@
 			</div>
 			<!-- END MAIN CONTENT -->
 		</div>
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -122,7 +120,7 @@
 		    <label for="mapel">Mata Pelajaran</label>
 		    <select class="form-control" id="mapel" name="mapel">
 		    	@foreach($matapelajaran as $mp)
-		    		<option value="{{$mp->id}}">{{$mp->nama}}</option>
+		    		<option value="{{$mp->id}}">{{$mp->matakuliah}}</option>
 		    	@endforeach
 		    </select>
   		</div>

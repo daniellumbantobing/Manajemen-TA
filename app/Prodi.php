@@ -13,5 +13,9 @@ public function siswa()
 	{
 		return $this->hasOne('App\Siswa');
 	}
+public function matakuliah()
+	{
+		return $this->hasMany(Matakuliah::class);
+	}
 
 }

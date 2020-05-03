@@ -49,7 +49,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/SI','SiswaController@SI');
 	Route::get('/TE','SiswaController@TE');
 	Route::get('/TI','SiswaController@TI');
-	 
+	Route::get('/matakuliah','MatakuliahController@index');
+	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
 	Route::get('post/add',[
 	'uses' => 'PostController@add',
 	'as' => 'posts.add'

@@ -18,10 +18,14 @@ class Siswa extends Model
     		return asset('images/'.$this->avatar);
     }
         
-    	public function mapel()
+    	/*public function mapel()
     	{
     		return $this->belongsToMany(Mapel::class)->withPivot(['nilai'])->withtimestamps();
-    	}
+    	}*/
+        public function matakuliah()
+        {
+            return $this->belongsToMany(Matakuliah::class)->withPivot(['nilai'])->withtimestamps();
+        }
 
         public function rataratanilai()
         {
@@ -29,10 +33,10 @@ class Siswa extends Model
             //$this memanggil objek sisawa yang dibentuk mengaju pada kelas siswa 
             $total = 0;
             $hitung = 0;
-            foreach ($this->mapel as $mapel) {
+            foreach ($this->matakuliah as $mapel) {
                 $total += $mapel->pivot->nilai;
-                $hitung = $mapel->count();
-                //$hitung++;
+                //$hitung = $mapel->count();
+                $hitung++;
                 
             }
            

@@ -1,6 +1,7 @@
 <?php
 use App\Siswa;
 use App\Guru;
+use App\Matakuliah;
 function ranking5Besar()
 {
 	$siswa = Siswa::all();
@@ -22,4 +23,10 @@ function totalsiswa()
 function totalguru()
 {
 	return Guru::count();
+
+}
+
+function totalmatakuliah(){
+ 
+   return Matakuliah::count();
 }
