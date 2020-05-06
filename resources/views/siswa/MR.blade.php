@@ -45,7 +45,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											@foreach($MR as $siswa)
+												@foreach($MR as $siswa)
 											<tr>
 												
 												<td><a href="/siswa/{{$siswa->id}}/profile">{{$siswa->nama_depan}}</a></td>

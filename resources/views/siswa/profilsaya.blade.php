@@ -32,7 +32,7 @@
 									<div class="profile-stat">
 										<div class="row">
 											<div class="col-md-4 stat-item">
-												{{$siswa->mapel->count()}} <span>Matapelajaran</span> 
+												{{$siswa->matakuliah->count()}} <span>Matapelajaran</span> 
 											</div>
 											<div class="col-md-4 stat-item">
 												{{$siswa->rataratanilai()}} <span>Rata-rata nilai</span>
@@ -77,13 +77,13 @@
 											</tr>
 										</thead>
 										<tbody>
-											@foreach($siswa->mapel as $mapel )
+											@foreach($siswa->matakuliah as $mapel )
 											<tr>
-												<td>{{$mapel->kode}}</td>
-												<td>{{$mapel->nama}}</td>
-												<td>{{$mapel->semester}}</td>
+												<td>{{$mapel->kode_matkul}}</td>
+												<td>{{$mapel->matakuliah}}</td>
+												<td>{{$mapel->semester->semester}}</td>
 												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai}}</a></td>
-												<td><a href="/guru/{{$mapel->guru_id}}/profile">{{$mapel->guru->nama}}</a></td>
+										
 											</tr>
 											@endforeach
 										</tbody>

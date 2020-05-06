@@ -63,7 +63,7 @@
 												<div class="hexagon">
 													<span class="lnr lnr-book award-icon"></span>
 												</div>
-												<span class="number">{{totalmatakuliah()}}</span><br>
+												<span class="number">{{totalmatakuliah  ()}}</span><br>
 												<span class="title">Matakuliah</span>
 											</div>
 										</div>
@@ -138,7 +138,8 @@
 							<!-- PANEL NO CONTROLS -->
 							<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Pengumuman</h3>
+									<h3 class="panel-title"><i class="fas fa-bullhorn"></i>
+									<b>Pengumuman</b></h3>
 								</div>
 								<div class="panel-body">
 										@foreach($posts as $ps)

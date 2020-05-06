@@ -15,7 +15,13 @@
 								@else
 								{{asset('images/default.jpg')}}
 								@endif
-								" class="img-circle" alt="Avatar"> <span>{{auth()->user()->name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+								" class="img-circle" alt="Avatar"> <span>
+								@if(auth()->user()->role == 'siswa')
+									{{auth()->user()->siswa->nama_depan}}
+								@else	
+									{{auth()->user()->name}}
+								@endif
+								</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="/profilsaya"><i class="lnr lnr-user"></i> <span>Profil Saya</span></a></li>
 								<li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>

@@ -3,6 +3,7 @@
 				<nav>
 					<ul class="nav">
 						<li><a href="/home" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="/forum"><i class="far fa-comments"></i><span>Forum</span></a></li>
 						@if(auth()->user()->role == 'admin')
 							<li><a href="/dosen"><i class="lnr lnr-user"></i> <span>Dosen</span></a></li>
 						

@@ -21,7 +21,6 @@ Route::get('/register','RegisterController@register');
 Route::get('/register1','SiteController@registerok');
 Route::post('/postregister','RegisterController@postregister');
 Route::get('/about', 'SiteController@about');
-Route::get('/home','DashboardController@index');
 
 Route::get('/login','AuthController@login')->name('login');
 Route::post('/postlogin','AuthController@postlogin');
@@ -72,9 +71,18 @@ Route::group(['middleware' => ['auth','checkRole:siswa']],function(){
 	
 });
 	
-Route::group(['middleware' => ['auth','checkRole:siswa,admin']],function(){
-		Route::get('/siswa/{siswa}/edit','SiswaController@edit');
+Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
+	Route::get('/home','DashboardController@index');
+	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
+	Route::get('/forum','ForumController@index');
+	Route::post('/forum/create','ForumController@create');
+	Route::get('/forum/{forum}/view','ForumController@view');
+	Route::post('/komentar/created/{forum}','ForumController@created');
+	Route::get('/komentar/{komentar}/deletekm','ForumController@deletekm');
+	Route::post('/komentar/{komentar}/updatekm','ForumController@updatekm');
+	
+
 });
 /*Route::group(['middleware' => ['dosen']], function() {
   	Route::get('/dashboard','DashboardController@index');

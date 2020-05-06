@@ -73,9 +73,14 @@ class SiswaController extends Controller
     {
     	//$siswa =Siswa::find($id);
     	$siswa->update($request->all());
+           /* $user = User::where('id',$request->id)
+            ->update([
+                'name' => $request->name
+            ]);*/
             if($request->hasFile('avatar')){
                     $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
                     $siswa->avatar = $request->file('avatar')->getClientOriginalName();
+                    $siswa->user->name = $request->name;
                     $siswa->save();
             }
     	return back()->with('sukses','Data berhasil diupdate');
