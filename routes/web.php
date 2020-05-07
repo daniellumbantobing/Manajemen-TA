@@ -82,7 +82,11 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/komentar/{komentar}/deletekm','ForumController@deletekm');
 	Route::post('/komentar/{komentar}/updatekm','ForumController@updatekm');
 	Route::get('/komentar/{komentar}/editkm','ForumController@editkm');
-		
+	Route::get('/files/create','DocumentController@create');
+	Route::post('/files','DocumentController@store');
+	Route::get('/files/{id}','DocumentController@show');
+	Route::get('/files/download/{file}','DocumentController@download');	
+	
 
 });
 /*Route::group(['middleware' => ['dosen']], function() {
