@@ -77,11 +77,12 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
 	Route::get('/forum','ForumController@index');
 	Route::post('/forum/create','ForumController@create');
-	Route::get('/forum/{forum}/view','ForumController@view');
+	Route::get('/forum/{forum}/view','ForumController@view')->name('forum.view');
 	Route::post('/komentar/created/{forum}','ForumController@created');
 	Route::get('/komentar/{komentar}/deletekm','ForumController@deletekm');
 	Route::post('/komentar/{komentar}/updatekm','ForumController@updatekm');
-	
+	Route::get('/komentar/{komentar}/editkm','ForumController@editkm');
+		
 
 });
 /*Route::group(['middleware' => ['dosen']], function() {

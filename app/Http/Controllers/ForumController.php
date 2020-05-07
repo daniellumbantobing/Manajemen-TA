@@ -51,10 +51,18 @@ class ForumController extends Controller
 
     }
 
-  public function updatekm(Request $request,Komentar $komentar){
-
+  public function updatekm(Request $request,Komentar $komentar,Forum $forum){
+         
+           
     	$komentar->update($request->all());
-    	return back()->with('sukses','Data matakuliah berhasil diupdate');
+    	return  back()->with('sukses','Komentar berhasil diupdate');
 
+    }
+
+
+  public function editkm(Komentar $komentar){
+    $forum = Forum::all();
+          
+    return view('forum.editkm',compact(['komentar','forum']));
     }
 }

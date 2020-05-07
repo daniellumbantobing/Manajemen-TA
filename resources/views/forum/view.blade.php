@@ -20,8 +20,8 @@
 											<img src="{{$km->user->siswa->getAvatar()}}" alt="Avatar" class="img-circle pull-left avatar">
 											<p><a href="#">{{$km->user->siswa->nama_depan}}</a> {{$km->konten}}<span class="timestamp">{{$km->created_at->diffForHumans()}}</span></p>
 											<div class="text-right">
-												@if(auth()->user()->role == 'siswa')
-												<a href="#" data-toggle="modal" data-target="#exampleModal">edit</a> | 
+												@if(auth()->user()->id == $km->user->id)
+												<a href="/komentar/{{$km->id}}/editkm" class="edit">edit</a> | 
 												<a href="#" class="delete" km-konten="{{$km->konten}}" km-id="{{$km->id}}">hapus</a></div>
 												@endif
 										</li>
@@ -44,34 +44,6 @@
  		
 
 
- 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLabel">Tambah Forum</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body">
-						<form action="/komentar/{{$km->id}}/updatekm" method="POST">
-								@csrf
-						
-							  	 <div class="form-group">
-								 <label for="exampleFormControlTextarea1">Komentar</label>
-								 <textarea name="konten" class="form-control" id="konten" rows="3" >{{old('konten')}}</textarea>
-								</div>
-
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				 		<button type="submit" class="btn btn-primary">Edit</button>
-						</form>
-				      </div>
-				    </div>
-				  </div>
-				</div>		
-		
  @stop
 
  @section('footer')
@@ -94,11 +66,5 @@
 		}); 
 	});
 </script>
-<script>
-	 ClassicEditor
-        .create( document.querySelector( '#konten' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
+
  @stop 
