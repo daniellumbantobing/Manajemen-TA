@@ -38,7 +38,7 @@
 								@csrf
 								<div class="form-group{{$errors->has('username') ? ' has-error' : ''}}">
 									<label for="signin-email" class="control-label sr-only">Username</label>
-									<input type="text" class="form-control" id="signin-email" placeholder="Username" name="username">
+									<input type="text" class="form-control" id="signin-email" placeholder="Username" name="username" value="{{old('username')}}">
 									@if($errors->has('username'))
 									<span class="help-block">{{$errors->first('username')}}</span>
 									@endif

@@ -38,8 +38,11 @@
 												<td>{{$fl->description}}</td>
 												<td>{{$fl->file}}</td>  
 												<td>
-													<a target="_blank" href="/files/{{$fl->id}}" class="btn btn-success btn-sm">View</a>
-													<a href="/files/download/{{$fl->file}}" class="btn btn-primary btn-sm"><i class="fa fa-download"></i> Download</a>
+													<a target="_blank" href="/files/{{$fl->id}}" class="btn btn-success btn-sm"><i class="fa fa-eye"></i>  View</a>
+													<a href="/files/download/{{$fl->file}}" class="btn btn-warning btn-sm"><i class="fa fa-download"></i> Download</a>
+													<a href="#" class="btn btn-danger btn-sm delete" siswa-id="{{$fl->id}}"><i class="fa fa-trash"></i> Delete</a>
+							
+													<a href="/files/edit/{{$fl->id}}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
 												
 												</td>
 											</tr>
@@ -111,4 +114,25 @@
             console.error( error );
         } );
 </script>
+@section('footer')
+<script>
+	$('.delete').click(function(){
+		  var siswa_id = $(this).attr('siswa-id');
+		  swal({
+		  title: "Yakin  ?",
+		  text: "Mau menghapus data siswa dengan id " +siswa_id + "??",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  
+		  if (willDelete) {
+		    window.location = "/document/"+siswa_id+"/hapus";
+		  } 
+		}); 
+	});
+</script>
+
+ @stop 
 @stop

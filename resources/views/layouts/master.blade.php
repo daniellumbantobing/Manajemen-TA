@@ -80,7 +80,6 @@
 			toastr.error("{{Session::get('error')}}", "Error") 
 		@endif
 	</script>
-	
 	@yield('footer')
 
 </body>

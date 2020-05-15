@@ -52,6 +52,8 @@
 											<li>Jenis kelamin <span>{{$siswa->jenis_kelamin}}</span></li>
 											<li>Agama <span>{{$siswa->agama}}</span></li>
 											<li>Alamat <span>{{$siswa->alamat}}</span></li>
+											<li>Prodi <span>{{$siswa->prodi->nama_prodi}}</span></li>
+
 										</ul>
 									</div>
 									<div class="text-center"><a href="/siswa/{{$siswa->id}}/edit" class="btn btn-warning">Edit Profile</a></div>

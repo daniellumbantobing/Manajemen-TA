@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/TI','SiswaController@TI');
 	Route::get('/matakuliah','MatakuliahController@index');
 	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
+	Route::get('/files','DocumentController@index');
 	Route::get('post/add',[
 	'uses' => 'PostController@add',
 	'as' => 'posts.add'
@@ -68,7 +69,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	
 Route::group(['middleware' => ['auth','checkRole:siswa']],function(){
 	Route::get('/profilsaya','SiswaController@profilsaya');
-	
+	Route::get('/files/create','DocumentController@create');
 });
 	
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
@@ -82,12 +83,17 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/komentar/{komentar}/deletekm','ForumController@deletekm');
 	Route::post('/komentar/{komentar}/updatekm','ForumController@updatekm');
 	Route::get('/komentar/{komentar}/editkm','ForumController@editkm');
-	Route::get('/files/create','DocumentController@create');
+	
 	Route::post('/files','DocumentController@store');
 	Route::get('/files/{id}','DocumentController@show');
 	Route::get('/files/download/{file}','DocumentController@download');	
+	Route::get('/document/{document}/hapus','DocumentController@destroy');	
+	Route::get('/files/edit/{document}','DocumentController@edit');
+	Route::post('/files/update/{document}','DocumentController@update');
 	
-
+	Route::get('/changepass','SiteController@changepass');
+	Route::post('/changepassword','SiteController@changepassword');
+	
 });
 /*Route::group(['middleware' => ['dosen']], function() {
   	Route::get('/dashboard','DashboardController@index');

@@ -14,7 +14,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Forum</h3>
 									<div class="right">
-									<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Tambah Forum</a>
+									<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i>    Tambah Forum</a>
 									</div>
 								</div>
 								<div class="panel-body">
@@ -22,8 +22,11 @@
 									 <ul class="list-unstyled activity-list">
 									 	@foreach($forum as $frm)
 										<li>
+											
 											<img src="{{$frm->user->siswa->getAvatar()}}" alt="Avatar" class="img-circle pull-left avatar">
 											<p><a href="/forum/{{$frm->id}}/view">{{$frm->user->siswa->nama_depan}} : {{$frm->judul}}</a> <span class="timestamp">{{$frm->created_at->diffForHumans()}}</span></p>
+
+												
 										</li>
 									
 										@endforeach

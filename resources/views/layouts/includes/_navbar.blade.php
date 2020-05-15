@@ -24,6 +24,7 @@
 								</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a href="/profilsaya"><i class="lnr lnr-user"></i> <span>Profil Saya</span></a></li>
+								<li><a href="/changepass"><i class="fa fa-key"></i> <span>Ubah Password</span></a></li>
 								<li><a href="/logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>

@@ -64,14 +64,16 @@ class SiswaController extends Controller
     public function edit(Siswa $siswa)
     {   
        /* $siswa = Siswa::findOrFail($id);*/
-        $prodi = Prodi::all();
+        $prodi = Prodi::get();
+        $user = User::get();
            
-    	return view('siswa.edit',['siswa'=> $siswa, 'prodi' => $prodi]);
+    	return view('siswa.edit',['siswa'=> $siswa, 'prodi' => $prodi, 'user' => $user]);
     }
 
-    public function update(Request $request,Siswa $siswa)
+    public function update(Request $request,Siswa $siswa,User $user)
     {
     	//$siswa =Siswa::find($id);
+        $user->update($request->all());
     	$siswa->update($request->all());
            /* $user = User::where('id',$request->id)
             ->update([
@@ -80,7 +82,7 @@ class SiswaController extends Controller
             if($request->hasFile('avatar')){
                     $request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
                     $siswa->avatar = $request->file('avatar')->getClientOriginalName();
-                    $siswa->user->name = $request->name;
+                    $siswa->nama_depan = $request->nama_depan;
                     $siswa->save();
             }
     	return back()->with('sukses','Data berhasil diupdate');

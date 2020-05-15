@@ -22,8 +22,9 @@
 											<div class="text-right">
 												@if(auth()->user()->id == $km->user->id)
 												<a href="/komentar/{{$km->id}}/editkm" class="edit">edit</a> | 
-												<a href="#" class="delete" km-konten="{{$km->konten}}" km-id="{{$km->id}}">hapus</a></div>
+												<a href="#" class="delete" km-konten="{{$km->konten}}" km-id="{{$km->id}}">hapus</a>
 												@endif
+											</div>
 										</li>
 										@endforeach	
 									</ul>

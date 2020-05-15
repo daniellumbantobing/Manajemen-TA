@@ -13,7 +13,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        $file = Documents::all();
+        return view('document.index',compact(['file']));
     }
 
     /**
@@ -38,7 +39,7 @@ class DocumentController extends Controller
         $data = new Documents;
         if ($request->file('file')) {
             $file=$request->file('file');
-            $filename=time().'.'.$file->getClientOriginalExtension();
+            $filename=$file->getClientOriginalName();
             $request->file->move('storage/', $filename);
             $data->file= $filename;
         }
@@ -71,9 +72,9 @@ class DocumentController extends Controller
         return response()->download('storage/'.$file);
     }
 
-    public function edit($id)
+    public function edit(Documents $document)
     {
-        //
+            return view('document.edit',compact(['document']));
     }
 
     /**
@@ -83,9 +84,20 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Documents $document)
     {
-        //
+        $document->update($request->all());
+
+           if ($request->file('file')) {
+            $file=$request->file('file');
+            $filename=$file->getClientOriginalName();
+            $request->file->move('storage/', $filename);
+            $document->file= $filename;
+       
+        $document->save();
+        }
+        
+        return redirect('/files/create')->with('sukses','Document berhasil diupdate');
     }
 
     /**
@@ -94,8 +106,10 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Documents $document)
     {
-        //
+        $document->delete();
+        return back()->with('sukses','Dokumen berhasil dihapus');
+        
     }
 }

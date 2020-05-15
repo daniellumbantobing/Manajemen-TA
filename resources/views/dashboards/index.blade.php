@@ -129,7 +129,7 @@
 												<div class="hexagon">
 													<span class="lnr lnr-book award-icon"></span>
 												</div>
-												<span class="number">{{totalguru()}}</span><br>
+												<span class="number">{{totalmatakuliah()}}</span><br>
 												<span class="title">Matakuliah</span>
 											</div>
 										</div>

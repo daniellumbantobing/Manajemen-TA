@@ -4,8 +4,10 @@
 					<ul class="nav">
 						<li><a href="/home" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 						<li><a href="/forum"><i class="far fa-comments"></i><span>Forum</span></a></li>
+						@if(auth()->user()->role == 'siswa')
+					
 						<li><a href="/files/create"><i class="far fa-folder"></i><span>Document</span></a></li>
-						@if(auth()->user()->role == 'admin')
+						@elseif(auth()->user()->role == 'admin')
 							<li><a href="/dosen"><i class="lnr lnr-user"></i> <span>Dosen</span></a></li>
 						
 							 		<li>
@@ -37,6 +39,7 @@
 								</li>
 						
 								<li><a href="/posts" class=""><i class="lnr lnr-pencil"></i> <span>Post</span></a></li>
+								<li><a href="/files"><i class="far fa-folder"></i><span>Document</span></a></li>
 						@endif
 					</ul>
 				</nav>
