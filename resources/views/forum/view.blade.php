@@ -17,8 +17,16 @@
 									 <ul class="list-unstyled activity-list">
 									 	@foreach($kmn as $km)
 										<li>
-											<img src="{{$km->user->siswa->getAvatar()}}" alt="Avatar" class="img-circle pull-left avatar">
-											<p><a href="#">{{$km->user->siswa->nama_depan}}</a> {{$km->konten}}<span class="timestamp">{{$km->created_at->diffForHumans()}}</span></p>
+											<img src="
+												@if(auth()->user()->role == 'siswa')
+								{{$km->user->siswa->getAvatar()}}
+								@else
+								 {{asset('images/default.jpg')}}
+								@endif
+								" alt="Avatar" class="img-circle pull-left avatar">
+											<p><a href="#">{{$km->user->name}}
+
+							</a> {{$km->konten}}<span class="timestamp">{{$km->created_at->diffForHumans()}}</span></p>
 											<div class="text-right">
 												@if(auth()->user()->id == $km->user->id)
 												<a href="/komentar/{{$km->id}}/editkm" class="edit">edit</a> | 

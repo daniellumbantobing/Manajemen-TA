@@ -20,54 +20,45 @@
 						<div class="panel panel-profile">
 						<div class="clearfix">
 							<!-- LEFT COLUMN -->
-							<div class="profile-left">
-								<!-- PROFILE HEADER -->
-								<div class="profile-header">
-									<div class="overlay"></div>
-									<div class="profile-main">
-										<img src="" class="img-circle" alt="Avatar">
-										<h3 class="name">{{$guru->nama}}</h3>
-										<span class="online-status status-available">Available</span>
-									</div>
-								
-								</div>
-								
-								
-								</div>
+							
 								<!-- END PROFILE DETAIL -->
-							</div>
-							<!-- END LEFT COLUMN -->
-							<!-- RIGHT COLUMN -->
-							<div class="profile-right">
-								
-						<div class="panel">
+					
 								<div class="panel-heading">
-									<h3 class="panel-title">Mata Pelajaran yang diajar oleh guru {{$guru->nama}}</h3>
+									<h3 class="panel-title">Data Dosen</h3>
 								</div>
 								<div class="panel-body">
 									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>Nama</th>
-												<th>Semester</th>
+										<tbody>		
+												<tr>
+												<th>Nama</th> 
+												<td>{{$dosen->nama}}</td>
 											</tr>
-										</thead>
-										<tbody>
-											@foreach($guru->mapel as $mapel)
 											<tr>
-												<td>{{$mapel->nama}}</td>
-												<td>{{$mapel->semester}}</td>
-											</tr>@endforeach
+												<th>NIDN</th>
+												<td>{{$dosen->nidn}}</td>
+											</tr>
+											<tr>
+												<th>Prodi</th>
+												<td>{{$dosen->prodi->nama_prodi}}</td>
+											</tr>
+											<tr>
+												<th>Status</th>
+												<td>{{$dosen->status}}</td>
+											</tr>
+											<tr>
+												<th>Jabatan Akademik</th>
+												<td>{{$dosen->jabatan}}</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
+							
+							
 							</div>
-							<div class="panel">
-								<div id="chartnilai">
-									
-								</div>
-							</div>
-						</div>
+							<!-- END LEFT COLUMN -->
+							<!-- RIGHT COLUMN -->
+						
+						
 					</div>
 				</div>
 			</div>

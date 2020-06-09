@@ -26,7 +26,7 @@ Route::get('/login','AuthController@login')->name('login');
 Route::post('/postlogin','AuthController@postlogin');
 Route::get('/logout','LogoutController@logout')->name('logout');
 Route::get('/logindosen','DosenController@logindosen');
-Route::post('/logind','DosenController@logind');
+Route::get('/dosen','DosenController@index');
 Route::post('siswa/create','SiswaController@create');
 Route::get('siswa/cari','SiswaController@cari');
 
@@ -42,7 +42,6 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/siswa/{id}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
 	Route::get('/siswa/exportexel', 'SiswaController@exportexel');
 	Route::get('/siswa/exportpdf', 'SiswaController@exportpdf');
-	Route::get('/guru/{id}/profile', 'GuruController@profile'); 
 	Route::get('/posts', 'PostController@index')->name('posts.index');
 	Route::get('/posts/{post}/delete','PostController@delete');
 	Route::get('/SI','SiswaController@SI');
@@ -51,6 +50,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/matakuliah','MatakuliahController@index');
 	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
 	Route::get('/files','DocumentController@index');
+	Route::post('dosen/createdosen','DosenController@createdosen');
 	Route::get('post/add',[
 	'uses' => 'PostController@add',
 	'as' => 'posts.add'
@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/komentar/{komentar}/deletekm','ForumController@deletekm');
 	Route::post('/komentar/{komentar}/updatekm','ForumController@updatekm');
 	Route::get('/komentar/{komentar}/editkm','ForumController@editkm');
+	Route::get('/dosen/{dosen}/profile', 'DosenController@profile'); 
 	
 	Route::post('/files','DocumentController@store');
 	Route::get('/files/{id}','DocumentController@show');

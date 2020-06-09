@@ -37,9 +37,6 @@
 											<div class="col-md-4 stat-item">
 												 <span>Rata-rata nilai</span>
 											</div>
-											<div class="col-md-4 stat-item">
-												2174 <span>Points</span>
-											</div>
 										</div>
 									</div>
 								</div>

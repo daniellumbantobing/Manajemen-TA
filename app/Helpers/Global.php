@@ -1,6 +1,6 @@
 <?php
 use App\Siswa;
-use App\Guru;
+use App\Dosen;
 use App\Matakuliah;
 function ranking5Besar()
 {
@@ -22,7 +22,7 @@ function totalsiswa()
 
 function totalguru()
 {
-	return Guru::count();
+	return Dosen::count();
 
 }
 

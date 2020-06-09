@@ -66,11 +66,6 @@
 						</div>
 					
 					</div>
-					<div class="row mt-3">
-            				<div class="col-12" style="margin-left: 13px;">
-				              <a href="/logindosen" class="text-light"><h4>Login Dosen</h4></a>
-				            </div>
-				   </div>
 				</div>
 			</div>
 

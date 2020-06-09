@@ -117,7 +117,7 @@
 											
 											<tr>
 												
-											<td><p style="color: red;">Data mahasiswa tidak ada</p></td>
+											<td colspan="7"><p style="color: red; text-align: center;">Data mahasiswa tidak ada</p></td>
 											</tr>
 										</tbody>
 

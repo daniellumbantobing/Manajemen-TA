@@ -127,6 +127,7 @@ class SiswaController extends Controller
             return redirect('siswa/'.$siswa->id.'/profile')->with('error','Data matapelajaran sudah ada ');    
         }
         $siswa->matakuliah()->attach($request->mapel,['nilai' => $request->nilai]);
+     
 
         return redirect('siswa/'.$siswa->id.'/profile')->with('sukses','Data berhasil dimasukkan'); 
     }
@@ -176,7 +177,7 @@ class SiswaController extends Controller
 
     public function SI(){
 
-        $SI = \App\Siswa::where('prodi_id',1)->orderBy('nim', 'ASC')->paginate(10);
+        $SI = \App\Siswa::where('prodi_id',1)->orderBy('nim', 'ASC')->get();
         
         return view('siswa.SistemInformasi',compact(['SI']));
     }

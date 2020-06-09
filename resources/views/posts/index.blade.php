@@ -13,9 +13,9 @@
  				<div class="col-md-12">
  					<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Posts</h3>
+									<h3 class="panel-title">Pengumuman</h3>
 									<div class="right">
-									<a href="{{route('posts.add')}}" class="btn btn-primary">Add new post</a>
+									<a href="{{route('posts.add')}}" class="btn btn-primary">Tambah Pengumuman</a>
 									</div>
 								</div>
 								<div class="panel-body">

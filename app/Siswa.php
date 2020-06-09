@@ -43,8 +43,16 @@ class Siswa extends Model
               if ($hitung == 0){
                  return 0;
              }
-            
-             return round($total/$hitung);
+             
+            $hasil = $total/$hitung;
+/*
+            if ($hasil == 90) {
+            return 'A';
+            }*/
+             return round($hasil);
+
+
+
         }
 
         public function namalengkap(){

@@ -64,7 +64,7 @@
 											@endforeach
 										</tbody>
 									</table>
-								{{ $SI->links() }}
+								
 								</div>
 						
 							</div>

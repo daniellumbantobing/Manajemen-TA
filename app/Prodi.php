@@ -18,4 +18,9 @@ public function matakuliah()
 		return $this->hasMany(Matakuliah::class);
 	}
 
+	public function dosen()
+	{
+		return $this->hasOne('App\Dosen');
+	}
+
 }

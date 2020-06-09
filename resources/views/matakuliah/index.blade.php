@@ -93,6 +93,7 @@
 </script>
 <script type="text/javascript"> 
  $('#table-datatables').DataTable( {
+"order": [[ 3, "asc" ]],
 
   dom: 'Bfrtip',
   buttons: [

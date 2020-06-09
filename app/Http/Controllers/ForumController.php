@@ -16,7 +16,12 @@ class ForumController extends Controller
 
 
     public function create(Request $request){
-    	$request->request->add(['user_id' => auth()->user()->id]);
+    	 $this->validate($request,[
+            'judul' => 'required',
+            'konten' => 'required'
+        ]);
+
+        $request->request->add(['user_id' => auth()->user()->id]);
     	$forum = Forum::create($request->all());
     	return redirect()->back()->with('sukses','Forum berhasil ditambahkan');
     }
