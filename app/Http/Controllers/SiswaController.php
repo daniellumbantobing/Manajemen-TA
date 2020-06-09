@@ -106,29 +106,38 @@ class SiswaController extends Controller
         //$siswa = Siswa::find($id);
         $matapelajaran = \App\Matakuliah::all();
         
-        //menyiapkan data untuk chart
+     
         $categories= [];
         $data = [];
+        $data1 = [];
+        $data2 = [];
+        $data3 = [];
 
         foreach ($matapelajaran as $mp) {
             if($siswa->matakuliah()->wherePivot('matakuliah_id',$mp->id)->first()){
-            $categories[] = $mp->nama;
-            $data[] = $siswa->matakuliah()->wherePivot('matakuliah_id',$mp->id)->first()->pivot->nilai; 
-            
+            $categories[] = $mp->matakuliah;
+            $data1 = $siswa->matakuliah()->wherePivot('matakuliah_id',$mp->id)->first()->pivot->nilai * 30/100;
+            $data2 = $siswa->matakuliah()->wherePivot('matakuliah_id',$mp->id)->first()->pivot->nilai1 * 10/100;
+            $data3 = $siswa->matakuliah()->wherePivot('matakuliah_id',$mp->id)->first()->pivot->nilai2 * 60/100;
+    
+                    
+            $data[] = $data1 + $data2 + $data3;
+                            
             }
+
         }
          return view('siswa.profile',['siswa' => $siswa, 'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
     }
         
      public function addnilai(Request $request,Siswa $siswa){
-       
+       $nilai = $request->nilai * 30/100 + $request->nilai1 * 10/100 + $request->nilai2 * 60/100;
         //$siswa = Siswa::find($idsiswa);
         if ($siswa->matakuliah()->where('matakuliah_id',$request->mapel)->exists()) {
             return redirect('siswa/'.$siswa->id.'/profile')->with('error','Data matapelajaran sudah ada ');    
         }
-        $siswa->matakuliah()->attach($request->mapel,['nilai' => $request->nilai]);
-     
 
+        $siswa->matakuliah()->attach($request->mapel,['nilai' => $request->nilai, 'nilai1' => $request->nilai1, 'nilai2' => $request->nilai2, 'nilaiakhir' => $nilai]);
+     
         return redirect('siswa/'.$siswa->id.'/profile')->with('sukses','Data berhasil dimasukkan'); 
     }
     

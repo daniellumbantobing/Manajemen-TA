@@ -10,5 +10,6 @@ class ApiController extends Controller
     {
     	$siswa = \App\Siswa::find($id);
     	$siswa->matakuliah()->updateExistingPivot($request->pk, ['nilai' => $request->value]);
+    		
     }
 }

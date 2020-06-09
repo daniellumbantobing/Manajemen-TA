@@ -7,6 +7,15 @@
 						<li><a href="/forum"><i class="far fa-comments"></i><span>Forum</span></a></li>
 					
 						<li><a href="/files/create"><i class="far fa-folder"></i><span>Document</span></a></li>
+						<li>
+							<a href="#subPage" data-toggle="collapse" class="collapsed"><i class="fas fa-cogs"></i> 
+							<span>Tugas Akhir</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPage" class="collapse ">
+								<ul class="nav">
+									<li><a href="/kelompok"><i class="fas fa-users"></i>Kelompok TA</a></li>
+								</ul>
+							</div>
+						</li>						
 						@elseif(auth()->user()->role == 'admin')
 							<li><a href="/dosen"><i class="lnr lnr-user"></i> <span>Dosen</span></a></li>
 						
@@ -27,16 +36,16 @@
 										<span>Tugas Akhir</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 										<div id="subPage" class="collapse ">
 										<ul class="nav">
-											<li><a href="/matakuliah"><i class="fas fa-users"></i>Kelompok TA</a></li>
+											<li><a href="/kelompokMahasiswa"><i class="fas fa-users"></i>Kelompok TA</a></li>
 										
 											
 									</ul>
 									</div>
 								</li>
 								<li>
-									<a href="#subPage" data-toggle="collapse" class="collapsed"><i class="lnr lnr-book"></i> 
+									<a href="#subPagess" data-toggle="collapse" class="collapsed"><i class="lnr lnr-book"></i> 
 										<span>Matakuliah</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-										<div id="subPage" class="collapse ">
+										<div id="subPagess" class="collapse ">
 										<ul class="nav">
 											<li><a href="/matakuliah"><i class="far fa-circle"></i>Semua Matkuliah</a></li>
 											<li><a href="/SI"><i class="far fa-circle"></i>S1 Sistem Informasi</a></li>

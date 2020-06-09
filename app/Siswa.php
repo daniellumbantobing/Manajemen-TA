@@ -24,7 +24,7 @@ class Siswa extends Model
     	}*/
         public function matakuliah()
         {
-            return $this->belongsToMany(Matakuliah::class)->withPivot(['nilai'])->withtimestamps();
+            return $this->belongsToMany(Matakuliah::class)->withPivot(['nilai','nilai1','nilai2','nilaiakhir'])->withtimestamps();
         }
 
         public function rataratanilai()
@@ -32,10 +32,14 @@ class Siswa extends Model
             // ambil nilai
             //$this memanggil objek sisawa yang dibentuk mengaju pada kelas siswa 
             $total = 0;
+            $total1 = 0;
+            $total2 = 0;
             $hitung = 0;
             foreach ($this->matakuliah as $mapel) {
                 $total += $mapel->pivot->nilai;
-                //$hitung = $mapel->count();
+                $total1 += $mapel->pivot->nilai1;
+                $total2 += $mapel->pivot->nilai2;
+                
                 $hitung++;
                 
             }
@@ -44,12 +48,36 @@ class Siswa extends Model
                  return 0;
              }
              
-            $hasil = $total/$hitung;
-/*
-            if ($hasil == 90) {
+            $hasil1 = $total * 30/100;
+            $hasil2 = $total1 * 10/100;
+            $hasil3 = $total2 * 60/100;
+
+            $hasil = $hasil1 + $hasil2 + $hasil3;
+ 
+
+            if ((79.5 <= $hasil) && ($hasil1 < 100)) {
             return 'A';
-            }*/
-             return round($hasil);
+            }
+            elseif ((72 <= $hasil) && ($hasil1 < 79.5)) {
+                return 'AB';
+            } 
+            elseif ((64.5 <= $hasil) && ($hasil1 < 72.5)) {
+                return 'B';
+            }
+             elseif ((57 <= $hasil) && ($hasil1 < 65.5)) {
+                return 'BC';
+            }
+             elseif ((49.5 <= $hasil) && ($hasil1 < 57)) {
+                return 'C';
+            }
+             elseif ((34 <= $hasil) && ($hasil1 < 49.5)) {
+                return 'D';
+            }
+             elseif ((0 <= $hasil) && ($hasil1 < 34)) {
+                return 'E';
+            }
+
+             return $hasil;
 
 
 

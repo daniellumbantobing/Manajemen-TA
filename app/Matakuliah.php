@@ -28,7 +28,7 @@ class Matakuliah extends Model
 
     public function siswa()
     {
-        return $this->belongsToMany(Siswa::class)->withPivot(['nilai']);
+        return $this->belongsToMany(Siswa::class)->withPivot(['nilai', 'nilai1','nilai2','nilaiakhir']);
     }
     public function guru()
     {

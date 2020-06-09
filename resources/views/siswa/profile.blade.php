@@ -29,17 +29,7 @@
 										<h3 class="name">{{$siswa->nama_depan}}</h3>
 										<span class="online-status status-available">Available</span>
 									</div>
-									<div class="profile-stat">
-										<div class="row">
-											<div class="col-md-4 stat-item">
-												<span>Matapelajaran</span> 
-											</div>
-											<div class="col-md-4 stat-item">
-												 <span>Rata-rata nilai</span>
-											</div>
-										</div>
 									</div>
-								</div>
 								<!-- END PROFILE HEADER -->
 								<!-- PROFILE DETAIL -->
 								<div class="profile-detail">
@@ -70,8 +60,10 @@
 												<th>Kode</th>
 												<th>Matakuliah</th>
 												<th>Semester</th>
-												<th>Nilai</th>
-												
+												<th>Project Report and Product</th>
+												<th>Presentation and Demo</th>
+												<th>Q&A</th>
+												<th>Nilai Akhir</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
@@ -82,6 +74,9 @@
 												<td>{{$mapel->matakuliah}}</td>
 												<td>{{$mapel->semester->semester}}</td>
 												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai}}</a></td>
+												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai1}}</a></td>
+												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai2}}</a></td>
+												<td>{{$mapel->pivot->nilaiakhir}}</td>
 												<td>
 												<a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data in ?')" >Delete</a>
 												</td>
@@ -122,10 +117,24 @@
 		    </select>
   		</div>
 			<div class="form-group{{$errors->has('nilai') ? ' has-error' : ''}}">
-				<label for="exampleInputEmail1">Nama Depan</label>
+				<label for="exampleInputEmail1">Final Project Report and Product</label>
 				<input name="nilai" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nilai " value="{{old('nilai')}}">
 				@if($errors->has('nilai'))
 				<span class="help-block">{{$errors->first('nilai')}}</span>
+				@endif
+			</div>
+			<div class="form-group{{$errors->has('nilai1') ? ' has-error' : ''}}">
+				<label for="exampleInputEmail1">Presentation Slides and Product Demo</label>
+				<input name="nilai1" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nilai " value="{{old('nilai1')}}">
+				@if($errors->has('nilai1'))
+				<span class="help-block">{{$errors->first('nilai1')}}</span>
+				@endif
+			</div>
+			<div class="form-group{{$errors->has('nilai2') ? ' has-error' : ''}}">
+				<label for="exampleInputEmail1">Questions and Answer</label>
+				<input name="nilai2" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nilai " value="{{old('nilai2')}}">
+				@if($errors->has('nilai2'))
+				<span class="help-block">{{$errors->first('nilai2')}}</span>
 				@endif
 			</div>
 			
@@ -173,7 +182,7 @@
 	        }
 	    },
 	    series: [{
-	        name: 'Nilai',
+	        name: 'Nilai Akhir',
 	        data: {!!json_encode($data)!!}
  
 	    }] 

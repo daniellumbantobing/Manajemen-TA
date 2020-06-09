@@ -62,4 +62,7 @@ class User extends Authenticatable
      public function document(){
         return $this->hasMany(Documents::class);
     }
+    public function kelompoks(){
+    return $this->hasMany(Kelompok::class);
+    }
 }

@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
 	Route::get('/files','DocumentController@index');
 	Route::post('dosen/createdosen','DosenController@createdosen');
+	Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
+	Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
 	Route::get('post/add',[
 	'uses' => 'PostController@add',
 	'as' => 'posts.add'
@@ -70,6 +72,9 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 Route::group(['middleware' => ['auth','checkRole:siswa']],function(){
 	Route::get('/profilsaya','SiswaController@profilsaya');
 	Route::get('/files/create','DocumentController@create');
+	Route::get('/kelompok','KelompokController@kelompok');
+Route::post('/kelompok/create','KelompokController@tambahKelompok');
+Route::get('/kelompok/{id}','KelompokController@hapusKelompok');
 });
 	
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
