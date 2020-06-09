@@ -104,8 +104,8 @@ class SiswaController extends Controller
 
   public function profile(Siswa $siswa){
         //$siswa = Siswa::find($id);
-        $matapelajaran = \App\Matakuliah::all();
-        
+        $matapelajaran = \App\Matakuliah::where('prodi_id',$siswa->prodi->id)->get();
+        $data_siswa  = \App\Siswa::get();
      
         $categories= [];
         $data = [];
@@ -126,7 +126,7 @@ class SiswaController extends Controller
             }
 
         }
-         return view('siswa.profile',['siswa' => $siswa, 'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data]);
+         return view('siswa.profile',['siswa' => $siswa, 'matapelajaran' => $matapelajaran,'categories' => $categories, 'data' => $data, 'data_siswa' => $data_siswa]);
     }
         
      public function addnilai(Request $request,Siswa $siswa){

@@ -32,9 +32,9 @@ class KelompokController extends Controller
         $kel->save(); 
         return redirect()->back()->with('sukses','Kelompok berhasil di upload');
     }
-    public function hapusKelompok($idKel)
+    public function hapusKelompok($id)
     {
-        $kel = \App\Kelompok::find($idKel);
+        $kel = \App\Kelompok::find($id);
         $kel->delete($kel);
         return redirect()->back()->with('sukses','Kelompok berhasil di upload');
     }
@@ -54,4 +54,15 @@ class KelompokController extends Controller
 		return redirect()->back()->with('sukses','alokasi pembimbing dan penguji berhasil di upload');
 	 
 	}
+  public function editKelompok($id){
+        $kelompok = \App\Kelompok::find($id);
+        return view('siswa.editKelompok',['kelompok'=> $kelompok]);
+    } 
+    
+    public function update(Request $request,$id){
+        // dd($request->all());
+        $kelompok = \App\Kelompok::find($id);
+        $kelompok->update($request->all());
+        return redirect('/kelompok')->with('sukses','Data kelompok berhasil diedit');
+    }
 }

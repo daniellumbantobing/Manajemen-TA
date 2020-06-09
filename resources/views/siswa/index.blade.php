@@ -40,7 +40,8 @@
 												<th>Jenis Kelamin</th>
 												<th>Agama</th>
 												<th>Alamat</th>
-												<th>Rata - rata nilai</th>
+												<th>Nilai Akhir</th>
+												<th>Grade</th>
 												<th>Aksi</th>
 											</tr>
 										</thead>
@@ -57,6 +58,7 @@
 												<td>{{$siswa->jenis_kelamin}}</td>
 												<td>{{$siswa->agama}}</td>
 												<td>{{$siswa->alamat}}</td>
+												<td>{{$siswa->rataratanilai1()}}</td>
 												<td>{{$siswa->rataratanilai()}}</td>
 												@if(auth()->user()->role == 'admin')
 												<td>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/ha', 'SiteController@home');
 Route::get('/','HomeController@index')->name('login');
 Route::get('/register','RegisterController@register');
-
+Route::get('/home','DashboardController@index');
 
 Route::get('/register1','SiteController@registerok');
 Route::post('/postregister','RegisterController@postregister');
@@ -75,10 +75,12 @@ Route::group(['middleware' => ['auth','checkRole:siswa']],function(){
 	Route::get('/kelompok','KelompokController@kelompok');
 Route::post('/kelompok/create','KelompokController@tambahKelompok');
 Route::get('/kelompok/{id}','KelompokController@hapusKelompok');
+Route::get('/kelompok/{id}/hapus','KelompokController@hapusKelompok');
+Route::get('/kelompok/{id}/editKelompok','KelompokController@editKelompok');
+Route::post('/kelompok/{id}/update','KelompokController@update');
 });
 	
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
-	Route::get('/home','DashboardController@index');
 	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
 	Route::get('/forum','ForumController@index');
@@ -104,6 +106,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 /*Route::group(['middleware' => ['dosen']], function() {
   	Route::get('/dashboard','DashboardController@index');
 });*/
+
 
 
 Route::get('/{slug}',[

@@ -6,40 +6,7 @@
 <div class="main">
  		<div class="main-content">
  			<div class="row">
- 				<div class="col-md-6">
-	<div class="panel">
-		<div class="panel-heading">
-			<h3 class="panel-title"></h3>
-				</div>
-					 <div class="panel-body">
-						   <table class="table table-striped">
-								<thead>
-									<tr>
-										<th>No</th>
-										<th>Nama</th>
-										<th>Nilai</th>
-										</tr>
-								</thead>
-								@php
-									$ranking = 1;
-								@endphp
-								@foreach(ranking5besar() as $s)
-									<tbody>
-										<tr>
-										<td>{{$ranking}}</td>
-										<td>{{$s->namalengkap()}}</td>
-										<td>{{$s->rataratanilai()}}</td>
-										
-										</tr>
-									</tbody>
-									@php
-									$ranking ++;
-								@endphp
-								@endforeach
-								</table>
-							</div>
-					</div>
-				</div>
+ 
 				<div class="col-md-2">
 											<div class="award-item">
 												<div class="hexagon">

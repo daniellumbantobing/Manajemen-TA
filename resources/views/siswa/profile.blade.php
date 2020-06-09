@@ -36,6 +36,8 @@
 									<div class="profile-info">
 										<h4 class="heading">Data diri</h4>
 										<ul class="list-unstyled list-justify">
+											<li>NIM <span>{{$siswa->nim}}</span></li>
+											<li>Jenis kelamin <span>{{$siswa->prodi->nama_prodi}}</span></li>
 											<li>Jenis kelamin <span>{{$siswa->jenis_kelamin}}</span></li>
 											<li>Agama <span>{{$siswa->agama}}</span></li>
 											<li>Alamat <span>{{$siswa->alamat}}</span></li>
@@ -76,7 +78,8 @@
 												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai}}</a></td>
 												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai1}}</a></td>
 												<td><a href="#" class="nilai" data-type="text" data-pk="{{$mapel->id}}" data-url="/api/siswa/{{$siswa->id}}/editnilai" data-title="Masukkan nilai">{{$mapel->pivot->nilai2}}</a></td>
-												<td>{{$mapel->pivot->nilaiakhir}}</td>
+												
+												<td>{{$siswa->rataratanilai()}}</td>
 												<td>
 												<a href="/siswa/{{$siswa->id}}/{{$mapel->id}}/deletenilai" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus data in ?')" >Delete</a>
 												</td>

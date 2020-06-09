@@ -36,9 +36,10 @@
 												<td>{{$kl->noKel}}</td>
 												<td>{{$kl->judul}}</td>
 												<td>{{$kl->namaMhs}}</td>
-												<td></td>
-												<td></td>
+												<td>{{$kl->pembimbing}}</td>
+												<td>{{$kl->penguji}}</td>
 												<td>
+													<a href="/kelompok/{{$kl->id}}/editKelompok" class="btn btn-warning btn-sm">Edit</a>
 													<a href="/kelompok/{{$kl->idKel}}" class="btn btn-danger btn-sm" onclick="return confirm('Anda ingin menghapus?')">Delete</a>
 												</td>
 											</tr>

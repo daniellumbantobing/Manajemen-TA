@@ -82,6 +82,41 @@ class Siswa extends Model
 
 
         }
+           public function rataratanilai1()
+        {
+            // ambil nilai
+            //$this memanggil objek sisawa yang dibentuk mengaju pada kelas siswa 
+            $total = 0;
+            $total1 = 0;
+            $total2 = 0;
+            $hitung = 0;
+            foreach ($this->matakuliah as $mapel) {
+                $total += $mapel->pivot->nilai;
+                $total1 += $mapel->pivot->nilai1;
+                $total2 += $mapel->pivot->nilai2;
+                
+                $hitung++;
+                
+            }
+           
+              if ($hitung == 0){
+                 return 0;
+             }
+             
+            $hasil1 = $total * 30/100;
+            $hasil2 = $total1 * 10/100;
+            $hasil3 = $total2 * 60/100;
+
+            $hasil = $hasil1 + $hasil2 + $hasil3;
+ 
+
+          
+
+             return $hasil;
+
+
+
+        }
 
         public function namalengkap(){
 
