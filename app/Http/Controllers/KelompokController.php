@@ -65,4 +65,18 @@ class KelompokController extends Controller
         $kelompok->update($request->all());
         return redirect('/kelompok')->with('sukses','Data kelompok berhasil diedit');
     }
+
+    public function history(){
+      $log = \App\Log::get();
+      $kelompok = Kelompok::get();
+      return view('siswa.history',compact(['log','kelompok']));
+
+    }
+
+    public function hapusHistory($id)
+    {
+        $kel = \App\Log::find($id);
+        $kel->delete($kel);
+        return redirect()->back()->with('sukses','History berhasil dihapus');
+    }
 }

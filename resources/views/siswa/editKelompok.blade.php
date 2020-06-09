@@ -27,6 +27,10 @@
 													<label for="exampleInputPassword1">Judul</label>
 													<input type="text" name="judul" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" value="{{$kelompok->judul}}" >
 												</div>
+												<div class="form-group">
+													<label for="exampleInputPassword1">Deskripsi</label>
+													<input type="text" name="des" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" >
+												</div>
 											<button type="submit" class="btn btn-warning">Update</button>
 										</form>
 									</div>

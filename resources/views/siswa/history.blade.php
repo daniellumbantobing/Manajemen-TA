@@ -13,7 +13,7 @@
 							<div class="col-md-12">
 								<div class="panel">
 									<div class="panel-heading">
-										<h3 class="panel-title"><b>KELOMPOK TUGAS AKHIR</b></h3>
+										<h3 class="panel-title"><b>Perubahan Judul TA</b></h3>
 									</div>
 
 									<div class="panel-body">
@@ -22,28 +22,23 @@
 												<tr>
 													<th>No</th>
 													<th>Kelompok</th>
-													<th>Judul Tugas Akhir</th>
-													<th>Nama</th>
-													<th>Dosen Pembimbing</th>
-													<th>Dosen Penguji</th>
+													<th>Judul Lama</th>
+													<th>Judul Baru</th>
+													<th>Deskripsi</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
-											@foreach($kelompok as $k=>$kl)
+											@foreach($log as $k=>$kl)
 											<tr>
 												<td>{{++$k}}</td>
 												<td>{{$kl->noKel}}</td>
 												<td>{{$kl->judul}}</td>
-												<td>{{$kl->namaMhs}}</td>
-												<td>{{$kl->pembimbing}}</td>
-												<td>{{$kl->penguji}}</td>
-												<td>
-													<a href="/kelompok/{{$kl->id}}/editKelompok" class="btn btn-warning btn-sm">Edit</a>
-													<a href="/kelompok/{{$kl->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Anda ingin menghapus?')">Delete</a>
-												</td>
-											</tr>
+												<td>{{$kl->judul1}}</td>
+												<td>{{$kl->des}}</td>
+												<td><a href="/history/{{$kl->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Anda ingin menghapus?')">Delete</a></td>
 											@endforeach										
+											
 											</tbody>								
 												<!-- Button trigger modal -->
 												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

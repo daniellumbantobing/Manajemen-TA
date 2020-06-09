@@ -91,14 +91,15 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::post('/komentar/{komentar}/updatekm','ForumController@updatekm');
 	Route::get('/komentar/{komentar}/editkm','ForumController@editkm');
 	Route::get('/dosen/{dosen}/profile', 'DosenController@profile'); 
-	
+	Route::get('/history/{id}','KelompokController@hapusHistory');
+
 	Route::post('/files','DocumentController@store');
 	Route::get('/files/{id}','DocumentController@show');
 	Route::get('/files/download/{file}','DocumentController@download');	
 	Route::get('/document/{document}/hapus','DocumentController@destroy');	
 	Route::get('/files/edit/{document}','DocumentController@edit');
 	Route::post('/files/update/{document}','DocumentController@update');
-	
+	Route::get('/history','KelompokController@history');
 	Route::get('/changepass','SiteController@changepass');
 	Route::post('/changepassword','SiteController@changepassword');
 	

@@ -1,4 +1,4 @@
-<div id="sidebar-nav" class="sidebar">
+ <div id="sidebar-nav" class="sidebar">
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
@@ -13,6 +13,7 @@
 							<div id="subPage" class="collapse ">
 								<ul class="nav">
 									<li><a href="/kelompok"><i class="fas fa-users"></i>Kelompok TA</a></li>
+									<li><a href="/history"><i class="fas fa-history"></i>Perubahan Judul</a></li>
 								</ul>
 							</div>
 						</li>						
@@ -37,7 +38,7 @@
 										<div id="subPage" class="collapse ">
 										<ul class="nav">
 											<li><a href="/kelompokMahasiswa"><i class="fas fa-users"></i>Kelompok TA</a></li>
-										
+											<li><a href="/history"><i class="fas fa-history"></i>Perubahan Judul</a></li>
 											
 									</ul>
 									</div>
