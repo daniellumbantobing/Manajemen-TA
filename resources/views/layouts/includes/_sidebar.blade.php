@@ -14,6 +14,7 @@
 								<ul class="nav">
 									<li><a href="/kelompok"><i class="fas fa-users"></i>Kelompok TA</a></li>
 									<li><a href="/history"><i class="fas fa-history"></i>Perubahan Judul</a></li>
+									<li><a href="/form"><i class="far fa-sticky-note"></i>Form Maju Sidang</a></li>
 								</ul>
 							</div>
 						</li>						
@@ -39,6 +40,7 @@
 										<ul class="nav">
 											<li><a href="/kelompokMahasiswa"><i class="fas fa-users"></i>Kelompok TA</a></li>
 											<li><a href="/history"><i class="fas fa-history"></i>Perubahan Judul</a></li>
+											<li><a href="/form"><i class="fas fa-sticky-note"></i>Form Maju Sidang</a></li>
 											
 									</ul>
 									</div>

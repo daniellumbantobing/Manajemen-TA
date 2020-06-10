@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Kelompok;
+use App\Form;
 use App\Dosen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -78,5 +79,36 @@ class KelompokController extends Controller
         $kel = \App\Log::find($id);
         $kel->delete($kel);
         return redirect()->back()->with('sukses','History berhasil dihapus');
+    }
+
+    public function form()
+    {
+        $form = \App\Form::all();
+        
+        return view('siswa.form',compact(['form']));
+    }
+
+     public function formcreate(Request $request)
+    {
+        $this->validate($request,[
+            'noKel' => 'required',
+            'judul' => 'required',
+        ]);
+
+        $kel = new Form;
+        $kel->noKel= $request->noKel;
+        $kel->judul = $request->judul;
+        $kel->status = $request->status;
+        $kel->save(); 
+
+        return redirect()->back()->with('sukses','History berhasil dikirim');
+    }
+    public function konfirmasi(Request $request)
+    {
+       $user = Form::find($request->id);
+        $user->status = $request->status;
+        $user->save();
+
+         return response()->json(['success'=>'Status change successfully.']);
     }
 }

@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::post('dosen/createdosen','DosenController@createdosen');
 	Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
 	Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
+	Route::get('/konfirmasi','KelompokController@konfirmasi');
 	Route::get('post/add',[
 	'uses' => 'PostController@add',
 	'as' => 'posts.add'
@@ -92,7 +93,9 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/komentar/{komentar}/editkm','ForumController@editkm');
 	Route::get('/dosen/{dosen}/profile', 'DosenController@profile'); 
 	Route::get('/history/{id}','KelompokController@hapusHistory');
-
+	Route::post('/form/create','KelompokController@formcreate');
+	Route::get('/form','KelompokController@form');
+	
 	Route::post('/files','DocumentController@store');
 	Route::get('/files/{id}','DocumentController@show');
 	Route::get('/files/download/{file}','DocumentController@download');	
