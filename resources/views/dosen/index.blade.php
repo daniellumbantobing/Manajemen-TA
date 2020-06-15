@@ -17,7 +17,7 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Data Dosen</h3>
 									<div class="left">
-											<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i>Tambah Akun Dosen</a>
+											<a type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus"></i> Buat Akun Dosen</a>
 
 									</div>
 									<!-- <div class="left">

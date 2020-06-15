@@ -24,15 +24,17 @@
 										<li>
 											
 											<img src="
-								@if(auth()->user()->role == 'siswa' )
-								{{$frm->user->siswa->getAvatar()}}
-								@else
+								
 								{{asset('images/default.jpg')}} 
-								@endif
 								" alt="Avatar" class="img-circle pull-left avatar">
 											<p><a href="/forum/{{$frm->id}}/view">{{$frm->user->name}} : {{$frm->judul}}</a> <span class="timestamp">{{$frm->created_at->diffForHumans()}}</span></p>
 
-												
+												<div class="text-right">
+												@if(auth()->user()->id == $frm->user->id)
+												<a href="/komentar/{{$frm->id}}/editkm" class="edit">edit</a> | 
+												<a href="#" class="delete" km-konten="{{$frm->konten}}" km-id="{{$frm->id}}">hapus</a>
+												@endif
+											</div>
 										</li>
 									
 										@endforeach
@@ -88,5 +90,24 @@
         .catch( error => {
             console.error( error );
         } );
+</script>
+<script>
+	$('.delete').click(function(){
+		  var km_id = $(this).attr('km-id');
+		  var km_konten = $(this).attr('km-konten') 
+		  swal({
+		  title: "Yakin  ?",
+		  text: "Mau menghapus forum " +km_id + "?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  
+		  if (willDelete) {
+		    window.location = "/komentar/"+km_id+"/deletefrm";
+		  } 
+		}); 
+	});
 </script>
 @stop

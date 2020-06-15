@@ -47,13 +47,15 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/SI','SiswaController@SI');
 	Route::get('/TE','SiswaController@TE');
 	Route::get('/TI','SiswaController@TI');
-	Route::get('/matakuliah','MatakuliahController@index');
+	
 	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
 	Route::get('/files','DocumentController@index');
 	Route::post('dosen/createdosen','DosenController@createdosen');
-	Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
-	Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
-	Route::get('/konfirmasi','KelompokController@konfirmasi');
+	
+	
+	Route::get('/editpost/{post}','PostController@edit');
+	Route::post('/updatedpost/{post}','PostController@update');
+	
 	Route::get('post/add',[
 	'uses' => 'PostController@add',
 	'as' => 'posts.add'
@@ -69,19 +71,61 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	 
 });
 
+Route::group(['middleware' => ['auth','checkRole:koordinator']],function(){
+	Route::get('/siswa','SiswaController@index');
+	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
+	Route::post('/siswa/{siswa}/update','SiswaController@update');
+	Route::post('siswa/create','SiswaController@create');
+	Route::get('/siswa/{siswa}/delete','SiswaController@delete');
+	Route::get('/siswa/{siswa}/profile', 'SiswaController@profile');
+	Route::post('/siswa/{siswa}/addnilai', 'SiswaController@addnilai');
+	Route::get('/siswa/{id}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
+	Route::get('/siswa/exportexel', 'SiswaController@exportexel');
+	Route::get('/siswa/exportpdf', 'SiswaController@exportpdf');
+	Route::get('/posts', 'PostController@index')->name('posts.index');
+	Route::get('/posts/{post}/delete','PostController@delete');
+	Route::get('/SI','SiswaController@SI');
+	Route::get('/TE','SiswaController@TE');
+	Route::get('/TI','SiswaController@TI');
+	
+	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
+	Route::get('/files','DocumentController@index');
+	Route::post('dosen/createdosen','DosenController@createdosen');
+	
+	Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
+	
+	Route::get('/editpost/{post}','PostController@edit');
+	Route::post('/updatedpost/{post}','PostController@update');
+
+	
+	Route::get('post/add',[
+	'uses' => 'PostController@add',
+	'as' => 'posts.add'
+
+]);
+
+
+	 
+
+	 Route::post('posts/create',[
+	'uses' => 'PostController@create',
+	'as' => 'posts.create'
+
+]); 
+	 
+});
+
 	
 Route::group(['middleware' => ['auth','checkRole:siswa']],function(){
 	Route::get('/profilsaya','SiswaController@profilsaya');
 	Route::get('/files/create','DocumentController@create');
 	Route::get('/kelompok','KelompokController@kelompok');
-Route::post('/kelompok/create','KelompokController@tambahKelompok');
-Route::get('/kelompok/{id}','KelompokController@hapusKelompok');
-Route::get('/kelompok/{id}/hapus','KelompokController@hapusKelompok');
-Route::get('/kelompok/{id}/editKelompok','KelompokController@editKelompok');
-Route::post('/kelompok/{id}/update','KelompokController@update');
+	Route::post('/kelompok/create','KelompokController@tambahKelompok');
+
+
 });
 	
-Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
+Route::group(['middleware' => ['auth','checkRole:admin,siswa,koordinator,dospen,dosenpenguji']],function(){
 	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
 	Route::get('/forum','ForumController@index');
@@ -95,7 +139,9 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/history/{id}','KelompokController@hapusHistory');
 	Route::post('/form/create','KelompokController@formcreate');
 	Route::get('/form','KelompokController@form');
-	
+	Route::get('/hapusform/{id}','KelompokController@hapusform');
+	Route::get('/matakuliah','MatakuliahController@index');
+	Route::get('/komentar/{forum}/deletefrm','ForumController@deletefrm');
 	Route::post('/files','DocumentController@store');
 	Route::get('/files/{id}','DocumentController@show');
 	Route::get('/files/download/{file}','DocumentController@download');	
@@ -105,12 +151,46 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa']],function(){
 	Route::get('/history','KelompokController@history');
 	Route::get('/changepass','SiteController@changepass');
 	Route::post('/changepassword','SiteController@changepassword');
+	Route::get('/kelompok/{id}','KelompokController@hapusKelompok');
+	Route::get('/kelompok/{id}/hapus','KelompokController@hapusKelompok');
+	Route::get('/kelompok/{id}/editKelompok','KelompokController@editKelompok');
+	Route::post('/kelompok/{id}/update','KelompokController@update');
+	Route::get('/jadwal','KelompokController@jadwal');
+	Route::post('/jadwal/create','KelompokController@tambahjadwal');
+	Route::get('/hapusjadwal/{id}','KelompokController@hapusjadwal');
+	Route::get('/jadwaledit/{jadwal}','KelompokController@jadwaledit');
+	Route::post('/updatejadwal/{jadwal}','KelompokController@updatejadwal');
+
+});
+Route::group(['middleware' => ['auth','checkRole:dospen,dosenpenguji']],function(){
+	Route::get('/siswa','SiswaController@index');
+	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
+	Route::post('/siswa/{siswa}/update','SiswaController@update');
+	Route::post('siswa/create','SiswaController@create');
+	Route::get('/siswa/{siswa}/delete','SiswaController@delete');
+	Route::get('/siswa/{siswa}/profile', 'SiswaController@profile');
+	Route::post('/siswa/{siswa}/addnilai', 'SiswaController@addnilai');
+	Route::get('/siswa/{id}/{idmapel}/deletenilai', 'SiswaController@deletenilai');
+	Route::get('/siswa/exportexel', 'SiswaController@exportexel');
+	Route::get('/siswa/exportpdf', 'SiswaController@exportpdf');
+	Route::get('/posts', 'PostController@index')->name('posts.index');
+	Route::get('/posts/{post}/delete','PostController@delete');
+	Route::get('/SI','SiswaController@SI');
+	Route::get('/TE','SiswaController@TE');
+	Route::get('/TI','SiswaController@TI');
+	Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
+Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
 	
+
 });
 /*Route::group(['middleware' => ['dosen']], function() {
   	Route::get('/dashboard','DashboardController@index');
 });*/
-
+Route::group(['middleware' => ['auth','checkRole:admin,koordinator,dospen,dosenpenguji']],function(){
+Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
+Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
+Route::get('/konfirmasi','KelompokController@konfirmasi');
+});
 
 
 Route::get('/{slug}',[

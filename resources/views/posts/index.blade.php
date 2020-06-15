@@ -36,7 +36,7 @@
 												<td>{{$post->user->name}}</td>  
 												<td>
 													<a target="_blank" href="{{route('site.single.post',$post->slug)}}" class="btn btn-info btn-sm">View</a>
-													<a href="#" class="btn btn-warning btn-sm">Edit</a>
+													<a href="editpost/{{$post->id}}" class="btn btn-warning btn-sm">Edit</a>
 													<a href="#" class="btn btn-danger btn-sm delete" post-id="{{$post->id}}">Delete</a>
 												</td>
 											</tr>

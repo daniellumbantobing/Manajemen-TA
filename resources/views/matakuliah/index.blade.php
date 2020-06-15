@@ -14,7 +14,7 @@
  				<div class="col-md-12">
  					<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Data Siswa</h3>
+									<h3 class="panel-title">Matakuliah</h3>
 									<!-- <div class="left">
 									<a href="/siswa/exportexel" class="btn btn-primary" target="_balank">Export Exel</a>
 									<a href="/siswa/exportpdf" class="btn btn-primary">Export PDF</a>
@@ -50,8 +50,10 @@
 												<td>{{$mk->prodi->nama_prodi}}</td>
 												<td>{{$mk->semester->semester}}</td>
 												<td>
-													<a href="" class="btn btn-warning btn-sm">Edit</a>
+													@if(auth()->user()->role == 'admin')
+													<a href="" class="btn btn-warning btn-sm di">Edit</a>
 													<a href="#" class="btn btn-danger btn-sm delete" mt-id="{{$mk->id}}">Delete</a>
+													@endif
 												</td>
 											</tr>
 											@endforeach
@@ -78,7 +80,7 @@
 		  var mt_id = $(this).attr('mt-id');
 		  swal({
 		  title: "Yakin  ?",
-		  text: "Mau menghapus data siswa dengan id " +mt_id + "??",
+		  text: "Mau menghapus matakuliah dengan id " +mt_id + "??",
 		  icon: "warning",
 		  buttons: true,
 		  dangerMode: true,

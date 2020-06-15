@@ -14,7 +14,7 @@
  				<div class="col-md-12">
  					<div class="panel">
 								<div class="panel-heading">
-									<h3 class="panel-title">Data Siswa</h3>
+									<h3 class="panel-title">Data Mahasiswa</h3>
 									<div class="left">
 									<a href="/siswa/exportexel" class="btn btn-primary" target="_balank">Export Exel</a>
 									<a href="/siswa/exportpdf" class="btn btn-primary">Export PDF</a>

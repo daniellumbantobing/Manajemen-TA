@@ -33,7 +33,8 @@
 
 								<div class="profile">
 								<div class="panel-heading">
-									<h3 class="panel-title"><b>{{$post->title}}</b></h3>
+									<h3 class="panel-title"><b>{{$post->title}}</b></h3><br>
+									<img src="{{$post->thumbnail}}" style="width: 200px; height: 200px;">
 								</div>
 								<div class="panel-body">
 									{!!$post->content!!}

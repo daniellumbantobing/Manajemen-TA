@@ -13,7 +13,7 @@
 							<div class="col-md-12">
 								<div class="panel">
 									<div class="panel-heading">
-										<h3 class="panel-title"><b>Form Maju Sidang</b></h3>
+										<h3 class="panel-title"><b>Jadwal Sidang</b></h3>
 									</div>
 
 									<div class="panel-body">
@@ -22,75 +22,71 @@
 												<tr>
 													<th>No</th>
 													<th>Kelompok</th>
-													<th>Judul</th>
-													<th>Status</th>
+													<th>Tanggal</th>
+													<th>Waktu</th>
+													<th>Tempat</th>
+													<th>Deskripsi</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
-										@foreach($form as $k=>$kl)
-										@if(auth()->user()->id == $kl->user->id || auth()->user()->role == 'admin' || auth()->user()->role == 'koordinator' )
+										@foreach($jadwal as $k=>$kl)
 											<tr>
 												<td>{{++$k}}</td>
-												<td>{{$kl->noKel}}</td>
-												<td>{{$kl->judul}}</td>
-												@if(auth()->user()->role == 'siswa')
+												<td>{{$kl->kelompok}}</td>
+												<td>{{$kl->tanggal}}</td>
+												<td>{{$kl->waktu}}</td>
+												<td>{{$kl->tempat}}</td>
+												<td>{{$kl->des}}</td>
 												<td>
-														@if($kl->status == 1)
-														setuju
-														@else
-														tidak setuju
-													@endif
-
-												</td>
-												</td>
-													<td>
+													<a href="/jadwaledit/{{$kl->id}}" class="btn btn-warning btn-sm">Edit</a>
 													<a href="#" class="btn btn-danger btn-sm delete" siswa-id="{{$kl->id}}">Delete</a>
-
 												</td>
-												@endif
-												@if(auth()->user()->role == 'admin' || auth()->user()->role == 'koordinator')
-												<td>
-											
-													     <input data-id="{{$kl->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Setuju" data-off="Tidak Setuju" {{ $kl->status ? 'checked' : '' }}>
-												</td>
-													<td>
-													<a href="#" class="btn btn-danger btn-sm delete" siswa-id="{{$kl->id}}">Delete</a>
-
-												</td>
-												@endif
 											</tr>
-											@endif
 										@endforeach
 											</tbody>								
 										
 												<!-- Button trigger modal -->
 												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-												  Buat Form Maju Sidang
+												  Buat Jadwal Sidang
 												</button><hr>
 												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												  <div class="modal-dialog" role="document">
 												    <div class="modal-content">
 												      <div class="modal-header">
-												        <h5 class="modal-title" id="exampleModalLabel">Tambah Form</h5>
+												        <h5 class="modal-title" id="exampleModalLabel">Buat Jadwal</h5>
 												        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												          <span aria-hidden="true">&times;</span>
 												        </button>
 												      </div>
 
 												      <div class="modal-body">
-														<form action="/form/create" method="POST" enctype="multipart/form-data">
+														<form action="/jadwal/create" method="POST" enctype="multipart/form-data">
 															{{csrf_field()}}
 														  <div class="form-group">
 														    <label for="exampleInputEmail1">Nomor Kelompok</label>
-														    <input type="text" name="noKel" class="form-control" id="exampleInputNama1" aria-describedby="emailHelp" placeholder="No.Kelompok" value="{{old('noKel')}}">
+														    <input type="text" name="kelompok" class="form-control" id="exampleInputNama1" aria-describedby="emailHelp" placeholder="No.Kelompok" value="{{old('Kelompok')}}">
 														  </div>
 														  
 														  <div class="form-group">
-														    <label for="exampleInputPassword1">Judul</label>
-														    <input type="text" name="judul" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" value="{{old('judul')}}" >
+														    <label for="exampleInputPassword1">Tanggal</label>
+														    <input type="date" name="tanggal" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="tanggal Tugas Akhir" value="{{old('tanggal')}}" >
 														  </div>
 
+														  <div class="form-group">
+														    <label for="exampleInputPassword1">Waktu</label>
+														    <input type="time" name="waktu" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="waktu Tugas Akhir" value="{{old('waktu')}}" >
+														  </div>
+
+														  <div class="form-group">
+														    <label for="exampleInputEmail1">Tempat</label>
+														    <input type="text" name="tempat" class="form-control" id="exampleInputNama1" aria-describedby="emailHelp" placeholder="Tempat" value="{{old('tempat')}}">
+														  </div>
+
+														  <div class="form-group">
+														    <label for="exampleInputEmail1">Deskripsi</label>
+														    <input type="text" name="des" class="form-control" id="exampleInputNama1" aria-describedby="emailHelp" placeholder="Deskripsi" value="{{old('des')}}">
+														  </div>
 												          <div class="modal-footer">
 												        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 												        	<button type="submit" class="btn btn-primary">Submit</button>
@@ -134,7 +130,7 @@
 		  var siswa_id = $(this).attr('siswa-id');
 		  swal({
 		  title: "Yakin  ?",
-		  text: "Mau menghapus form maju sidang dengan id " +siswa_id + "??",
+		  text: "Mau menghapus jadwal sidang dengan id " +siswa_id + "??",
 		  icon: "warning",
 		  buttons: true,
 		  dangerMode: true,
@@ -142,7 +138,7 @@
 		.then((willDelete) => {
 		  
 		  if (willDelete) {
-		    window.location = "/hapusform/"+siswa_id;
+		    window.location = "/hapusjadwal/"+siswa_id;
 		  } 
 		}); 
 	});

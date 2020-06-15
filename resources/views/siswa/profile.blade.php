@@ -37,8 +37,16 @@
 										<h4 class="heading">Data diri</h4>
 										<ul class="list-unstyled list-justify">
 											<li>NIM <span>{{$siswa->nim}}</span></li>
-											<li>Jenis kelamin <span>{{$siswa->prodi->nama_prodi}}</span></li>
-											<li>Jenis kelamin <span>{{$siswa->jenis_kelamin}}</span></li>
+											<li>Prodi <span>{{$siswa->prodi->nama_prodi}}</span></li>
+											<li>Email <span>{{$siswa->user->email}}</span></li>
+											<li>Jenis kelamin <span>
+												@if	( $siswa->jenis_kelamin == 'L' )
+													Laki - laki
+
+												@else
+												Perempuan	
+												@endif
+											</span></li>
 											<li>Agama <span>{{$siswa->agama}}</span></li>
 											<li>Alamat <span>{{$siswa->alamat}}</span></li>
 										</ul>

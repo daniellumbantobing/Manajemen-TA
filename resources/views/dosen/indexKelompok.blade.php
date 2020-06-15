@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title','Kelompok TA')
 @section('content')
 			<div class="main" style="margin-top: -1%;">
 				<div class="main-content">
@@ -23,9 +23,12 @@
 													<th>No</th>
 													<th>Nomor Kelompok</th>
 													<th>Judul Tugas Akhir</th>
-													<th>Nama</th>
+													<th>Nama Mahasiwa 1</th>
+													<th>Nama Mahasiwa 2</th>
+													<th>Nama Mahasiwa 3</th>
 													<th>Dosen Pembimbing</th>
 													<th>Dosen Penguji</th>
+													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -35,15 +38,23 @@
 													<td>{{$kl->noKel}}</td>
 													<td>{{$kl->judul}}</td>
 													<td>{{$kl->namaMhs}}</td>
+													<td>{{$kl->namaMhs1}}</td>
+													<td>{{$kl->namaMhs2}}</td>
 													<td>{{$kl->pembimbing}}</td>
 													<td>{{$kl->penguji}}</td>
+													<td>
+													<a href="/kelompok/{{$kl->id}}/editKelompok" class="btn btn-warning btn-sm">Edit</a>
+													<a href="/kelompok/{{$kl->id}}" class="btn btn-danger btn-sm" onclick="return confirm('Anda ingin menghapus?')">Delete</a>
+												</td>
 												</tr>
 												@endforeach										
 											</tbody>								
 												<!-- Button trigger modal -->
+												@if(auth()->user()->role == 'admin' || auth()->user()->role == 'koordinator')) 
 												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 												  Alokasikan Kelompok
 												</button><hr>
+												@endif
 												<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												  <div class="modal-dialog" role="document">
 												    <div class="modal-content">

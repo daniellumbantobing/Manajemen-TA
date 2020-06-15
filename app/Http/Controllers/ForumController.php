@@ -55,6 +55,12 @@ class ForumController extends Controller
     	return back()->with('sukses','Data matakuliah berhasil dihapus');
 
     }
+    public function deletefrm(Forum $forum){
+
+        $forum->delete();
+        return back()->with('sukses','Data matakuliah berhasil dihapus');
+
+    }
 
   public function updatekm(Request $request,Komentar $komentar,Forum $forum){
          

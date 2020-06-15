@@ -23,24 +23,10 @@
 							<div class="profile-left">
 								<!-- PROFILE HEADER -->
 								<div class="profile-header">
-									<div class="overlay"></div>
 									<div class="profile-main">
 										<img  width="100" height="100" src="{{$siswa->getAvatar()}}" class="img-circle" alt="Avatar">
 										<h3 class="name">{{$siswa->nama_depan}} {{$siswa->nama_belakang}}</h3>
 										
-									</div>
-									<div class="profile-stat">
-										<div class="row">
-											<div class="col-md-4 stat-item">
-												{{$siswa->matakuliah->count()}} <span>Matapelajaran</span> 
-											</div>
-											<div class="col-md-4 stat-item">
-												{{$siswa->rataratanilai()}} <span>Rata-rata nilai</span>
-											</div>
-											<div class="col-md-4 stat-item">
-												2174 <span>Points</span>
-											</div>
-										</div>
 									</div>
 								</div>
 								<!-- END PROFILE HEADER -->
@@ -49,10 +35,12 @@
 									<div class="profile-info">
 										<h4 class="heading">Data diri</h4>
 										<ul class="list-unstyled list-justify">
+											<li>NIM <span>{{$siswa->nim}}</span></li>
+											<li>Prodi <span>{{$siswa->prodi->nama_prodi}}</span></li>
+											<li>Email <span>{{$siswa->user->email}}</span></li>
 											<li>Jenis kelamin <span>{{$siswa->jenis_kelamin}}</span></li>
 											<li>Agama <span>{{$siswa->agama}}</span></li>
 											<li>Alamat <span>{{$siswa->alamat}}</span></li>
-											<li>Prodi <span>{{$siswa->prodi->nama_prodi}}</span></li>
 
 										</ul>
 									</div>

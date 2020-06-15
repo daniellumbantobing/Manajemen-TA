@@ -23,7 +23,9 @@
 													<th>No</th>
 													<th>Kelompok</th>
 													<th>Judul Tugas Akhir</th>
-													<th>Nama</th>
+													<th>Nama Mahasiwa 1</th>
+													<th>Nama Mahasiwa 2</th>
+													<th>Nama Mahasiwa 3</th>
 													<th>Dosen Pembimbing</th>
 													<th>Dosen Penguji</th>
 													<th>Aksi</th>
@@ -36,6 +38,8 @@
 												<td>{{$kl->noKel}}</td>
 												<td>{{$kl->judul}}</td>
 												<td>{{$kl->namaMhs}}</td>
+												<td>{{$kl->namaMhs1}}</td>
+												<td>{{$kl->namaMhs2}}</td>
 												<td>{{$kl->pembimbing}}</td>
 												<td>{{$kl->penguji}}</td>
 												<td>
@@ -70,6 +74,32 @@
 														    <label for="exampleInputPassword1">Judul</label>
 														    <input type="text" name="judul" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" value="{{old('judul')}}" >
 														  </div>
+														   
+														   <div class="form-group{{$errors->has('namaMhs1') ? ' has-error' : ''}}">
+								  <label for="exampleInputEmail1">Nama</label>
+							<select name="namaMhs1" class="form-control" id="exampleFormControlSelect1">
+							@foreach($mahasiswa as $p)
+							<option value="{{$p->nama_depan}}" >{{$p->nama_depan}}</option>
+							@endforeach
+							</select>
+							 @if($errors->has('namaMhs1'))
+							<span class="help-block">{{$errors->first('namaMhs1')}}</span>
+							@endif
+							</div>						
+														   
+
+														  	   
+														   <div class="form-group{{$errors->has('namaMhs2') ? ' has-error' : ''}}">
+								  <label for="exampleInputEmail1">Nama</label>
+							<select name="namaMhs2" class="form-control" id="exampleFormControlSelect1">
+							@foreach($mahasiswa as $p)
+							<option value="{{$p->nama_depan}}" >{{$p->nama_depan}}</option>
+							@endforeach
+							</select>
+							 @if($errors->has('namaMhs2'))
+							<span class="help-block">{{$errors->first('namaMhs2')}}</span>
+							@endif
+							</div>						
 <!-- 														  <div class="form-group">
 														    <label for="exampleInputEmail1">NIM</label>
 														    <input type="text" name="nim" class="form-control" id="exampleInputNama1" aria-describedby="emailHelp" placeholder="NIM" value="{{old('nim')}}">

@@ -18,11 +18,9 @@
 									 	@foreach($kmn as $km)
 										<li>
 											<img src="
-												@if(auth()->user()->role == 'siswa')
-								{{$km->user->siswa->getAvatar()}}
-								@else
+												
 								 {{asset('images/default.jpg')}}
-								@endif
+								
 								" alt="Avatar" class="img-circle pull-left avatar">
 											<p><a href="#">{{$km->user->name}}
 
