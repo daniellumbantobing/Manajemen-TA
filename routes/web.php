@@ -125,7 +125,7 @@ Route::group(['middleware' => ['auth','checkRole:siswa']],function(){
 
 });
 	
-Route::group(['middleware' => ['auth','checkRole:admin,siswa,koordinator,dospen,dosenpenguji']],function(){
+Route::group(['middleware' => ['auth','checkRole:admin,siswa,koordinator,dospen,dosenpenguji,baak']],function(){
 	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
 	Route::get('/forum','ForumController@index');
@@ -162,7 +162,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa,koordinator,dospen,
 	Route::post('/updatejadwal/{jadwal}','KelompokController@updatejadwal');
 
 });
-Route::group(['middleware' => ['auth','checkRole:dospen,dosenpenguji']],function(){
+Route::group(['middleware' => ['auth','checkRole:dospen,dosenpenguji,koordinator']],function(){
 	Route::get('/siswa','SiswaController@index');
 	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');

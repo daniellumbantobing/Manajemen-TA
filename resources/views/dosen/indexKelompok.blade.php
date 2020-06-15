@@ -50,7 +50,7 @@
 												@endforeach										
 											</tbody>								
 												<!-- Button trigger modal -->
-												@if(auth()->user()->role == 'admin' || auth()->user()->role == 'koordinator')) 
+												@if(auth()->user()->role == 'admin' || auth()->user()->role == 'koordinator')
 												<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 												  Alokasikan Kelompok
 												</button><hr>

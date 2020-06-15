@@ -57,6 +57,19 @@
 									</ul>
 									</div>
 								</li>
+									@elseif(auth()->user()->role == 'baak')
+
+								<li>
+									<a href="#subPage" data-toggle="collapse" class="collapsed"><i class="fas fa-cogs"></i> 
+										<span>Tugas Akhir</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+										<div id="subPage" class="collapse ">
+										<ul class="nav">
+											
+											<li><a href="/jadwal"><i class="fas fa-calendar-alt"></i>Jadwal Sidang</a></li>
+											
+									</ul>
+									</div>
+								</li>
 						
 							@elseif(auth()->user()->role == 'dosenpenguji')
 									<li><a href="/dosen"><i class="lnr lnr-user"></i> <span>Dosen</span></a></li>
