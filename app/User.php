@@ -59,6 +59,9 @@ class User extends Authenticatable
     public function form(){
         return $this->hasMany(Form::class);
     }
+      public function jadwal(){
+        return $this->hasMany(Jadwal::class);
+    }
 
     public function komentar(){
         return $this->hasMany(Komentar::class);

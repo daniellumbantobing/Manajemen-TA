@@ -22,8 +22,7 @@
 	<!-- TABLES -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-	 <link href="{{ asset('admin/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
-
+	<link href="{{ asset('admin/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet" />
 
 	
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -78,6 +77,8 @@
 	<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 	
 	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+
 
 	<script>
 		@if(Session::has('sukses'))

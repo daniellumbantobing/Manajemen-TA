@@ -1,5 +1,9 @@
 @extends('layouts.master')
+@section('header')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
+  	
+@stop
 @section('content')
 			<div class="main" style="margin-top: -1%;">
 				<div class="main-content">
@@ -74,33 +78,24 @@
 														    <label for="exampleInputPassword1">Judul</label>
 														    <input type="text" name="judul" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" value="{{old('judul')}}" >
 														  </div>
-														   
-														   <div class="form-group{{$errors->has('namaMhs1') ? ' has-error' : ''}}">
-								  <label for="exampleInputEmail1">Nama</label>
-							<select name="namaMhs1" class="form-control" id="exampleFormControlSelect1">
-							@foreach($mahasiswa as $p)
-							<option value="{{$p->nama_depan}}" >{{$p->nama_depan}}</option>
-							@endforeach
-							</select>
-							 @if($errors->has('namaMhs1'))
-							<span class="help-block">{{$errors->first('namaMhs1')}}</span>
-							@endif
-							</div>						
-														   
+														<div class="form-group{{$errors->has('namaMhs1') ? ' has-error' : ''}}">
+														
+														  <div class="form-group">
+														    <label for="exampleInputPassword1">Nama Mahasiswa</label>
+														    <input type="text" name="namaMhs1" class="form-control" id="mhs" aria-describedby="emailHelp" placeholder="Nama" value="{{old('namaMhs1')}}" >
+														    <div id="namelist"></div>
+														  </div>
+														 <div class="form-group{{$errors->has('namaMhs1') ? ' has-error' : ''}}">
 
-														  	   
-														   <div class="form-group{{$errors->has('namaMhs2') ? ' has-error' : ''}}">
-								  <label for="exampleInputEmail1">Nama</label>
-							<select name="namaMhs2" class="form-control" id="exampleFormControlSelect1">
-							@foreach($mahasiswa as $p)
-							<option value="{{$p->nama_depan}}" >{{$p->nama_depan}}</option>
-							@endforeach
-							</select>
-							 @if($errors->has('namaMhs2'))
-							<span class="help-block">{{$errors->first('namaMhs2')}}</span>
-							@endif
-							</div>						
-<!-- 														  <div class="form-group">
+
+														  
+														  <div class="form-group">
+														    <label for="exampleInputPassword1">Nama Mahasiswa</label>
+														    <input type="text" name="namaMhs2" class="form-control" id="mhs2" aria-describedby="emailHelp" placeholder="Nama" value="{{old('namaMhs2')}}" >
+														    <div id="namelist2"></div>
+														  </div>
+														 <div class="form-group{{$errors->has('namaMhs2') ? ' has-error' : ''}}">
+							<!-- 														  <div class="form-group">
 														    <label for="exampleInputEmail1">NIM</label>
 														    <input type="text" name="nim" class="form-control" id="exampleInputNama1" aria-describedby="emailHelp" placeholder="NIM" value="{{old('nim')}}">
 														  </div>
@@ -124,4 +119,67 @@
 					</div>
 				</div>
 			</div>
-@endsection
+@stop
+@section('footer')
+
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+             
+                $('#mhs').on('keyup',function() {
+                    var query = $(this).val(); 
+                    $.ajax({
+                       
+                        url:"{{ route('autocomplete.fetch') }}",
+                  
+                        type:"GET",
+                       
+                        data:{'country':query},
+                       
+                        success:function (data) {
+                          
+                            $('#namelist').html(data);
+                        }
+                    })
+                    // end of ajax call
+                });
+
+                
+                $(document).on('click', 'li', function(){
+                  
+                    var value = $(this).text();
+                    $('#mhs').val(value);
+                    $('#namelist').html("");
+                });
+            });
+        </script>
+
+         <script type="text/javascript">
+            $(document).ready(function () {
+             
+                $('#mhs2').on('keyup',function() {
+                    var q = $(this).val(); 
+                    $.ajax({
+                       
+                        url:"{{ route('autocomplete') }}",
+                  
+                        type:"GET",
+                       
+                        data:{'nama_depan':q},
+                       
+                        success:function (data) {
+                          
+                            $('#namelist2').html(data);
+                        }
+                    })
+                    // end of ajax call
+                });
+
+                 
+             
+            });
+        </script>
+
+ @stop 
+

@@ -30,8 +30,10 @@ Route::get('/dosen','DosenController@index');
 Route::post('siswa/create','SiswaController@create');
 Route::get('siswa/cari','SiswaController@cari');
 
+Route::get('/autocomplete/fetch', 'KelompokController@fetch')->name('autocomplete.fetch');
+Route::get('/autocomplete', 'SiswaController@autocomplete')->name('autocomplete');
 
-Route::group(['middleware' => ['auth','checkRole:admin']],function(){
+/*Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/siswa','SiswaController@index');
 	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
@@ -49,7 +51,6 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 	Route::get('/TI','SiswaController@TI');
 	
 	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
-	Route::get('/files','DocumentController@index');
 	Route::post('dosen/createdosen','DosenController@createdosen');
 	
 	
@@ -70,8 +71,8 @@ Route::group(['middleware' => ['auth','checkRole:admin']],function(){
 ]); 
 	 
 });
-
-Route::group(['middleware' => ['auth','checkRole:koordinator']],function(){
+*/
+Route::group(['middleware' => ['auth','checkRole:koordinator,baak,admin']],function(){
 	Route::get('/siswa','SiswaController@index');
 	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
@@ -89,7 +90,6 @@ Route::group(['middleware' => ['auth','checkRole:koordinator']],function(){
 	Route::get('/TI','SiswaController@TI');
 	
 	Route::get('/matakuliah/{matakuliah}/deletemt', 'MatakuliahController@deletemt');
-	Route::get('/files','DocumentController@index');
 	Route::post('dosen/createdosen','DosenController@createdosen');
 	
 	Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
@@ -126,8 +126,6 @@ Route::group(['middleware' => ['auth','checkRole:siswa']],function(){
 });
 	
 Route::group(['middleware' => ['auth','checkRole:admin,siswa,koordinator,dospen,dosenpenguji,baak']],function(){
-	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
-	Route::post('/siswa/{siswa}/update','SiswaController@update');
 	Route::get('/forum','ForumController@index');
 	Route::post('/forum/create','ForumController@create');
 	Route::get('/forum/{forum}/view','ForumController@view')->name('forum.view');
@@ -142,6 +140,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa,koordinator,dospen,
 	Route::get('/hapusform/{id}','KelompokController@hapusform');
 	Route::get('/matakuliah','MatakuliahController@index');
 	Route::get('/komentar/{forum}/deletefrm','ForumController@deletefrm');
+	Route::get('/files','DocumentController@index');
 	Route::post('/files','DocumentController@store');
 	Route::get('/files/{id}','DocumentController@show');
 	Route::get('/files/download/{file}','DocumentController@download');	
@@ -162,7 +161,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,siswa,koordinator,dospen,
 	Route::post('/updatejadwal/{jadwal}','KelompokController@updatejadwal');
 
 });
-Route::group(['middleware' => ['auth','checkRole:dospen,dosenpenguji,koordinator']],function(){
+Route::group(['middleware' => ['auth','checkRole:admin,siswa,dospen,dosenpenguji,koordinator']],function(){
 	Route::get('/siswa','SiswaController@index');
 	Route::get('/siswa/{siswa}/edit','SiswaController@edit');
 	Route::post('/siswa/{siswa}/update','SiswaController@update');
@@ -179,7 +178,7 @@ Route::group(['middleware' => ['auth','checkRole:dospen,dosenpenguji,koordinator
 	Route::get('/TE','SiswaController@TE');
 	Route::get('/TI','SiswaController@TI');
 	Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
-Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
+	Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
 	
 
 });
@@ -190,6 +189,8 @@ Route::group(['middleware' => ['auth','checkRole:admin,koordinator,dospen,dosenp
 Route::post('/kelompokMahasiswa/alokasi','KelompokController@alokasi');
 Route::get('/kelompokMahasiswa','KelompokController@indexKelompok');
 Route::get('/konfirmasi','KelompokController@konfirmasi');
+Route::get('/konfirmasijadwal','KelompokController@konfirmasijadwal');
+Route::get('/konfirmasijadwal1','KelompokController@konfirmasijadwal1');
 });
 
 

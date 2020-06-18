@@ -58,7 +58,7 @@
 									</div>
 								</li>
 									@elseif(auth()->user()->role == 'baak')
-
+										<li><a href="/dosen"><i class="lnr lnr-user"></i> <span>Dosen</span></a></li>
 								<li>
 									<a href="#subPage" data-toggle="collapse" class="collapsed"><i class="fas fa-cogs"></i> 
 										<span>Tugas Akhir</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
@@ -66,7 +66,8 @@
 										<ul class="nav">
 											
 											<li><a href="/jadwal"><i class="fas fa-calendar-alt"></i>Jadwal Sidang</a></li>
-											
+											<li><a href="/form"><i class="fas fa-sticky-note"></i>Form Maju Sidang</a></li>
+											<li><a href="/jadwal"><i class="fas fa-calendar-alt"></i>Jadwal Sidang</a></li>
 									</ul>
 									</div>
 								</li>
@@ -133,7 +134,7 @@
 											<li><a href="/kelompokMahasiswa"><i class="fas fa-users"></i>Kelompok TA</a></li>
 											<li><a href="/history"><i class="fas fa-history"></i>Perubahan Judul</a></li>
 											<li><a href="/form"><i class="fas fa-sticky-note"></i>Form Maju Sidang</a></li>
-											<li><a href="/form"><i class="fas fa-calendar-alt"></i>Jadwal Sidang</a></li>
+											<li><a href="/jadwal"><i class="fas fa-calendar-alt"></i>Jadwal Sidang</a></li>
 											
 									</ul>
 									</div>

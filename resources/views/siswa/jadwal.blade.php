@@ -25,6 +25,8 @@
 													<th>Tanggal</th>
 													<th>Waktu</th>
 													<th>Tempat</th>
+													<th>Dosen Pembimgbing</th>
+													<th>Dosen Penguji</th>
 													<th>Deskripsi</th>
 													<th>Aksi</th>
 												</tr>
@@ -37,10 +39,55 @@
 												<td>{{$kl->tanggal}}</td>
 												<td>{{$kl->waktu}}</td>
 												<td>{{$kl->tempat}}</td>
+												@if(auth()->user()->role == 'admin' || auth()->user()->role == 'dospen')
+												<td> 
+													<input data-id="{{$kl->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Setuju" data-off="Tidak Setuju" {{ $kl->status1 ? 'checked' : '' }}>
+												</td>
+												<td>
+														@if($kl->status2 == 1)
+														setuju
+														@else
+														tidak setuju
+													@endif
+
+												</td>
+												@elseif(auth()->user()->role == 'dosenpenguji')
+												<td>
+														@if($kl->status1 == 1)
+														setuju
+														@else
+														tidak setuju
+													@endif
+
+												</td>
+												<td>
+													<input data-id="{{$kl->id}}" class="toggle-class1" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Setuju" data-off="Tidak Setuju" {{ $kl->status2 ? 'checked' : '' }}>
+												</td>
+											
+												@elseif(auth()->user()->role == 'baak')
+												<td>
+														@if($kl->status1 == 1)
+														setuju
+														@else
+														tidak setuju
+													@endif
+
+												</td>
+												<td>
+													@if($kl->status2 == 1)
+														setuju
+														@else
+														tidak setuju
+													@endif
+
+												</td>
+												@endif
 												<td>{{$kl->des}}</td>
 												<td>
 													<a href="/jadwaledit/{{$kl->id}}" class="btn btn-warning btn-sm">Edit</a>
+													@if(auth()->user()->role == 'baak' || auth()->user()->role == 'admin')
 													<a href="#" class="btn btn-danger btn-sm delete" siswa-id="{{$kl->id}}">Delete</a>
+													@endif
 												</td>
 											</tr>
 										@endforeach
@@ -118,7 +165,25 @@
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: '/konfirmasi',
+            url: '/konfirmasijadwal',
+            data: {'status': status, 'id': user_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+</script>
+<script>
+  $(function() {
+    $('.toggle-class1').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0; 
+        var user_id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/konfirmasijadwal1',
             data: {'status': status, 'id': user_id},
             success: function(data){
               console.log(data.success)

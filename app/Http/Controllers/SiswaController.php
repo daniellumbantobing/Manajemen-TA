@@ -12,6 +12,7 @@ use \App\Prodi;
 use PDF;
 use DB;
 use Session;
+
 class SiswaController extends Controller
 {
     public function index(Request $request)
@@ -202,5 +203,35 @@ class SiswaController extends Controller
         $TI = \App\Siswa::where('prodi_id',2)->orderBy('nim', 'ASC')->paginate(10);
         
         return view('siswa.TI',compact(['TI']));
+    }
+
+
+     public function autocomplete(Request $request)
+    {
+      if($request->ajax()) {
+          
+            $data = Siswa::where('nama_depan', 'LIKE', $request->nama_depan.'%')
+                ->get();
+           
+            $output = '';
+           
+            if (count($data)>0) {
+              
+                $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
+              
+                foreach ($data as $row){
+                   
+                    $output .= '<li class="list-group-item">'.$row->nama_depan.'</li>';
+                }
+              
+                $output .= '</ul>';
+            }
+            else {
+             
+                $output .= '<li class="list-group-item">'.'No results'.'</li>';
+            }
+           
+            return $output;
+        }
     }
 }

@@ -120,6 +120,60 @@
 					</div>
 </div>
 </div>
+@elseif(auth()->user()->role == 'baak') 
+<div class="main">
+ 		<div class="main-content">
+
+ 		<div class="panel panel-headline">
+						<div class="panel-heading">
+							<h3 class="panel-title">Selamat Datang {{auth()->user()->name}} 
+						</h3>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+									
+ 		<div class="panel-body">
+				<div class="col-md-3">
+					<div class="award-item">
+						<div class="hexagon">
+							<span class="lnr lnr-graduation-hat award-icon"></span>
+						</div>
+							<span class="number">{{totalsiswa()}}</span><br>
+							<span class="title">Mahasiswa</span>
+					</div>
+					</div>
+					<div class="col-md-3">
+						<div class="award-item">
+						<div class="hexagon">
+						<span class="lnr lnr-user award-icon"></span>
+												</div>
+												<span class="number">{{totalguru()}}</span><br>
+												<span class="title">Dosen</span>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="award-item">
+												<div class="hexagon">
+													<span class="lnr lnr-book award-icon"></span>
+												</div>
+												<span class="number">{{totalmatakuliah  ()}}</span><br>
+												<span class="title">Matakuliah</span>
+											</div>
+										</div>
+		</div>
+	
+							
+
+							</div>
+
+								
+							</div>
+
+
+						</div>
+
+</div>
+
 	@elseif(auth()->user()->role == 'siswa')
 
 

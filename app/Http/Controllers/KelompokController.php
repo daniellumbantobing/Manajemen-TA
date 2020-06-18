@@ -7,7 +7,8 @@ use App\Siswa;
 use App\Dosen;
 use App\Jadwal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
+
 
 class KelompokController extends Controller
 {
@@ -145,7 +146,8 @@ class KelompokController extends Controller
             'kelompok' => 'required',
             'tanggal' => 'required',
             'waktu' => 'required',
-            'tempat' => 'required'
+            'tempat' => 'required',
+          
         ]);
 
         $kel = new Jadwal;
@@ -153,7 +155,7 @@ class KelompokController extends Controller
         $kel->tanggal = $request->tanggal;
         $kel->waktu = $request->waktu;
         $kel->tempat = $request->tempat;
-        
+        $kel->user_id = auth()->user()->id;
         
         $kel->save(); 
         return redirect()->back()->with('sukses','Jadwal berhasil dibuat');
@@ -176,5 +178,57 @@ class KelompokController extends Controller
         $kelompok = \App\Jadwal::find($id);
         $kelompok->update($request->all());
         return redirect('/jadwal')->with('sukses','Jadwal kelompok berhasil diedit');
+    }
+
+    public function fetch(Request $request){
+             if($request->ajax()) {
+          
+            $data = Siswa::where('nama_depan', 'LIKE', $request->country.'%')->orwhere('prodi_id', 'LIKE', $request->country.'%')
+                ->get();
+           
+            $output = '';
+           
+            if (count($data)>0) {
+              
+                $output = '<ul class="list-group" style="display: block; position: relative; z-index: 1">';
+              
+                foreach ($data as $row){
+                   
+                    $output .= '<li class="list-group-item">'.$row->nama_depan.'</li>';
+                }
+              
+                $output .= '</ul>';
+            }
+            else {
+             
+                $output .= '<li class="list-group-item">'.'No results'.'</li>';
+            }
+           
+            return $output;
+        }
+    }
+
+    public function konfirmasijadwal(Request $request)
+    {
+       $user = Jadwal::find($request->id);
+        $user->status1 = $request->status;
+
+
+            
+        $user->save();
+
+         return response()->json(['success'=>'Status change successfully.']);
+    }
+
+       public function konfirmasijadwal1(Request $request)
+    {
+       $user = Jadwal::find($request->id);
+        $user->status2 = $request->status;
+
+
+            
+        $user->save();
+
+         return response()->json(['success'=>'Status change successfully.']);
     }
 }
