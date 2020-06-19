@@ -19,8 +19,12 @@ class KelompokController extends Controller
       	return view('siswa.kelompokTA',compact(['kelompok','mahasiswa']));
     }
 
-    public function tambahKelompok(Request $request)
-    {   
+    public function tambahKelompok(Request $request, Kelompok $kelompok)
+    {    
+
+         if ($kelompok->where('idMhs',auth()->user()->id)->exists()) {
+            return redirect()->back()->with('error','Kelompok Anda sudah ada');    
+        }
    
         $this->validate($request,[
             'noKel' => 'required',

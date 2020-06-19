@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('header')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+   
 
   	
 @stop
@@ -78,7 +78,6 @@
 														    <label for="exampleInputPassword1">Judul</label>
 														    <input type="text" name="judul" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" value="{{old('judul')}}" >
 														  </div>
-														<div class="form-group{{$errors->has('namaMhs1') ? ' has-error' : ''}}">
 														
 														  <div class="form-group">
 														    <label for="exampleInputPassword1">Nama Mahasiswa</label>
@@ -124,62 +123,62 @@
 
 
 
-        <script type="text/javascript">
-            $(document).ready(function () {
-             
-                $('#mhs').on('keyup',function() {
-                    var query = $(this).val(); 
-                    $.ajax({
-                       
-                        url:"{{ route('autocomplete.fetch') }}",
-                  
-                        type:"GET",
-                       
-                        data:{'country':query},
-                       
-                        success:function (data) {
-                          
-                            $('#namelist').html(data);
-                        }
-                    })
-                    // end of ajax call
-                });
+	        <script type="text/javascript">
+	            $(document).ready(function () {
+	             
+	                $('#mhs').on('keyup',function() {
+	                    var query = $(this).val(); 
+	                    $.ajax({
+	                       
+	                        url:"{{ route('autocomplete.fetch') }}",
+	                  
+	                        type:"GET",
+	                       
+	                        data:{'country':query},
+	                       
+	                        success:function (data) {
+	                          
+	                            $('#namelist').html(data);
+	                        }
+	                    })
+	                    // end of ajax call
+	                });
 
-                
-                $(document).on('click', 'li', function(){
-                  
-                    var value = $(this).text();
-                    $('#mhs').val(value);
-                    $('#namelist').html("");
-                });
-            });
-        </script>
+	                
+	                $(document).on('click', 'li', function(){
+	                  
+	                    var value = $(this).text();
+	                    $('#mhs').val(value);
+	                    $('#namelist').html("");
+	                });
+	            });
+	        </script>
 
-         <script type="text/javascript">
-            $(document).ready(function () {
-             
-                $('#mhs2').on('keyup',function() {
-                    var q = $(this).val(); 
-                    $.ajax({
-                       
-                        url:"{{ route('autocomplete') }}",
-                  
-                        type:"GET",
-                       
-                        data:{'nama_depan':q},
-                       
-                        success:function (data) {
-                          
-                            $('#namelist2').html(data);
-                        }
-                    })
-                    // end of ajax call
-                });
+	         <script type="text/javascript">
+	            $(document).ready(function () {
+	             
+	                $('#mhs2').on('keyup',function() {
+	                    var q = $(this).val(); 
+	                    $.ajax({
+	                       
+	                        url:"{{ route('autocomplete') }}",
+	                  
+	                        type:"GET",
+	                       
+	                        data:{'nama_depan':q},
+	                       
+	                        success:function (data) {
+	                          
+	                            $('#namelist2').html(data);
+	                        }
+	                    })
+	                    // end of ajax call
+	                });
 
-                 
-             
-            });
-        </script>
+	                 
+	             
+	            });
+	        </script>
 
  @stop 
 

@@ -27,6 +27,22 @@
 													<label for="exampleInputPassword1">Judul</label>
 													<input type="text" name="judul" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" value="{{$kelompok->judul}}" >
 												</div>
+												 <div class="form-group">
+														    <label for="exampleInputPassword1">Nama Mahasiswa</label>
+														    <input type="text" name="namaMhs1" class="form-control" id="mhs" aria-describedby="emailHelp" placeholder="Nama" value="{{$kelompok->namaMhs1}}" >
+														    <div id="namelist"></div>
+														  </div>
+														 <div class="form-group{{$errors->has('namaMhs1') ? ' has-error' : ''}}">
+
+
+														  
+														  <div class="form-group">
+														    <label for="exampleInputPassword1">Nama Mahasiswa</label>
+														    <input type="text" name="namaMhs2" class="form-control" id="mhs2" aria-describedby="emailHelp" placeholder="Nama" value="{{$kelompok->namaMhs2}}" >
+														    <div id="namelist2"></div>
+														  </div>
+														 <div class="form-group{{$errors->has('namaMhs2') ? ' has-error' : ''}}">
+
 												<div class="form-group">
 													<label for="exampleInputPassword1">Deskripsi</label>
 													<input type="text" name="des" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" placeholder="Judul Tugas Akhir" >
@@ -40,4 +56,66 @@
 					</div>
 				</div>
 			</div>
-@endsection	
+@stop
+@section('footer')
+
+
+
+	        <script type="text/javascript">
+	            $(document).ready(function () {
+	             
+	                $('#mhs').on('keyup',function() {
+	                    var query = $(this).val(); 
+	                    $.ajax({
+	                       
+	                        url:"{{ route('autocomplete.fetch') }}",
+	                  
+	                        type:"GET",
+	                       
+	                        data:{'country':query},
+	                       
+	                        success:function (data) {
+	                          
+	                            $('#namelist').html(data);
+	                        }
+	                    })
+	                    // end of ajax call
+	                });
+
+	                
+	                $(document).on('click', 'li', function(){
+	                  
+	                    var value = $(this).text();
+	                    $('#mhs').val(value);
+	                    $('#namelist').html("");
+	                });
+	            });
+	        </script>
+
+	         <script type="text/javascript">
+	            $(document).ready(function () {
+	             
+	                $('#mhs2').on('keyup',function() {
+	                    var q = $(this).val(); 
+	                    $.ajax({
+	                       
+	                        url:"{{ route('autocomplete') }}",
+	                  
+	                        type:"GET",
+	                       
+	                        data:{'nama_depan':q},
+	                       
+	                        success:function (data) {
+	                          
+	                            $('#namelist2').html(data);
+	                        }
+	                    })
+	                    // end of ajax call
+	                });
+
+	                 
+	             
+	            });
+	        </script>
+
+ @stop 
